@@ -18,6 +18,7 @@
 //
 
 //Inspired by http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+//http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 function thousandCommaSeparator(num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -56,19 +57,29 @@ zipWeather.addEventListener('load', function() {
 
 //Los Angeles Electricity
   var laElectricityObj = JSON.parse(laZipElectricity.responseText);
-  var laElectricityAnnualAvg = thousandCommaSeparator(Math.round(laElectricityObj.meta.view.columns[15].cachedContents.sum * 1000000 / 365.24));
+  var laElectricityAnnualAvg = thousandCommaSeparator(Math.round((laElectricityObj.meta.view.columns[15].cachedContents.sum * 1000000) / 365.24));
+
   document.getElementById('laElectricityUsage').innerHTML = laElectricityAnnualAvg;
 
-
-  var numSolarPanels = thousandCommaSeparator(Number.parseInt(Number.parseInt(laElectricityAnnualAvg.replace(/\,/g, "")) / Number.parseFloat(ghIrradianceDailyAvg) / 0.390 / 0.1521)); 
+//Grape Solar Panel 390w 15.21% Efficiency http://solar-panels-review.toptenreviews.com/grape-solar-390w-review.html?cmpid=ttr-ls
+//71.1% efficiency for fixed position solar panels: http://www.solarpaneltilt.com/
+//Solar Panels Needed
+  var numSolarPanelsRaw = Number.parseInt(Number.parseInt(laElectricityAnnualAvg.replace(/\,/g, "")) / (Number.parseFloat(ghIrradianceDailyAvg) * 0.390 * 0.711)); 
+  var numSolarPanels = thousandCommaSeparator(numSolarPanelsRaw); 
   document.getElementById('numSolarPanelsNeeded').innerHTML = numSolarPanels;
 
 
-var grapeSolarPanelLengthIn = 77.2;
-var grapeSolarPanelWidthIn = 51.5;
-var grapeSolarPanelPrice = 585;
-var grapeSolarPanelsSqft = grapeSolarPanelLengthIn * grapeSolarPanelWidthIn; 
-  document.getElementById('solarPanelsSqft').innerHTML = thousandCommaSeparator(Number.parseInt(grapeSolarPanelsSqft));
+  var grapeSolarPanelLengthIn = 77.2;
+  var grapeSolarPanelWidthIn = 51.5;
+  var grapeSolarPanelPrice = 585;
+  var grapeSolarPanelsSqft = (grapeSolarPanelLengthIn/12) * (grapeSolarPanelWidthIn/12); 
+  document.getElementById('solarPanelsSqft').innerHTML = thousandCommaSeparator(Number.parseInt(Number.parseFloat(grapeSolarPanelsSqft) * Number.parseInt(numSolarPanelsRaw)));
+
+
+
+//Los Angeles City sqft source wikipedia. This only includes the land area. 
+  var laAreaSqft =  thousandCommaSeparator(1.307e+10);
+  document.getElementById('laSqft').innerHTML = laAreaSqft;
 
 
 });
@@ -79,6 +90,7 @@ var grapeSolarPanelsSqft = grapeSolarPanelLengthIn * grapeSolarPanelWidthIn;
 //Calculation Ideas: Grape Solar has a 390w panel with 15.21% efficiency and is made in the US.
 //http://www.livescience.com/41747-best-solar-panels.html
 //
+
 
 
     

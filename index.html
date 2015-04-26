@@ -13,46 +13,51 @@
     <link rel="stylesheet" href="tachyons.css">
     <script src="app.js"></script>
     <style>
-       {
+        {
         border: 1px solid gold;
 
       }
 
     </style>
   </head>
-  <body style="background:url('losangeles44.svg'); background-size: cover; background-repeat: no-repeat;">
+  <body>
     <script>
     </script> 
     <header>
-      <h1 class="center tc ttu ptm dark-yellow f1 ptxl">Solar</h1>
-      <h2 class="center tc f3">Number of <span class="darkest-yellow">Solar Panels</span> to Be <span class="teal">Sustainable</span</h2>
-        <h3 class="center tc f3 ttu black">Los Angeles</h3>
+      <h1 class="center tc ttu ptm dark-yellow f1">Solar</h1>
+      <h2 class="center tc mega-ns f1 ttu black bt bb b--silver mtn mbn">Los Angeles</h2>
     </header>
     <main class="">
-      <!--Is this the right structure using form around select. Checkout HTML5 doctor.-->
-    <section class="ptl">
-      <dl class="pll">
+    <section class="">
+      <dl class="">
+        <dt id="" class="f2 tc b"><span class="darkest-yellow">Solar Panels</span> to Be <span class="teal">Sustainable</span></dt>
+        <dd class='mln f2 f1-ns pts tc'><span id="numSolarPanelsNeeded"></span></dd>
+      </dl>
+    </section>
+    <section class="ptm">
+      <dl class="">
         <dt id="" class="f2 tc b">Usable Sun a Day<a target="_blank" href="https://developer.nrel.gov/docs/solar/solar-resource-v1/#request-url" class="link" title="Definition of GHI or Global Horizontal Irradiance"> (GHI)</a></dt>
-        <dd class='mln f1 pts tc'><span id="ghIrradiance"></span> kWh</dd>
+        <dd class='mln f2 f1-ns pts tc'><span id="ghIrradiance"></span> kWh</dd>
       </dl>
     </section>
-    <section class="ptl">
-      <dl class="pll">
-        <dt id="" class="f2 tc b">Electricity Used<a target="_blank" href="http://en.wikipedia.org/wiki/Kilowatt_hour" class="link" title="Definition of a kilowatt hour"> (kWh)</a></dt>
-        <dd class='mln f1 pts tc'><span id="laElectricityUsage"></span></dd>
-      </dl>
-    </section>
-    <section class="ptl">
-      <dl class="pll">
-        <dt id="" class="f2 tc b">Solar Panels Needed</dt>
-        <dd class='mln f1 pts tc'><span id="numSolarPanelsNeeded"></span></dd>
+    <section class="ptm">
+      <dl class="">
+        <dt id="" class="f2 tc b">Electricity Consumed<a target="_blank" href="http://en.wikipedia.org/wiki/Kilowatt_hour" class="link" title="Definition of a kilowatt hour"> (kWh)</a></dt>
+        <dd class='mln f2 f1-ns pts tc'><span id="laElectricityUsage"></span></dd>
       </dl>
     </section>
 
-    <section class="ptl">
-      <dl class="pll">
+    <section class="ptm">
+      <dl class="">
         <dt id="" class="f2 tc b">Solar Panels Area (Sqft)</dt>
-        <dd class='mln f1 pts tc'><span id="solarPanelsSqft"></span></dd>
+        <dd class='mln f2 f1-ns pts tc'><span id="solarPanelsSqft"></span></dd>
+      </dl>
+    </section>
+
+    <section class="ptm">
+      <dl class="">
+        <dt id="" class="f2 tc b">Los Angeles Land Area (Sqft)</dt>
+        <dd class='mln f2 f1-ns pts tc'><span id="laSqft"></span></dd>
       </dl>
     </section>
 
