@@ -73,14 +73,23 @@ zipWeather.addEventListener('load', function() {
   var grapeSolarPanelWidthIn = 51.5;
   var grapeSolarPanelPrice = 585;
   var grapeSolarPanelsSqft = (grapeSolarPanelLengthIn/12) * (grapeSolarPanelWidthIn/12); 
-  document.getElementById('solarPanelsSqft').innerHTML = thousandCommaSeparator(Number.parseInt(Number.parseFloat(grapeSolarPanelsSqft) * Number.parseInt(numSolarPanelsRaw)));
+  var laAreaForSolarSqftNum = Number.parseInt(Number.parseFloat(grapeSolarPanelsSqft) * Number.parseInt(numSolarPanelsRaw)); 
+  var laAreaForSolarSqftString = thousandCommaSeparator(laAreaForSolarSqftNum );
+
+
+  document.getElementById('solarPanelsSqft').innerHTML = thousandCommaSeparator(laAreaForSolarSqftNum); 
 
 
 
 //Los Angeles City sqft source wikipedia. This only includes the land area. 
-  var laAreaSqft =  thousandCommaSeparator(1.307e+10);
-  document.getElementById('laSqft').innerHTML = laAreaSqft;
+  var laAreaSqft =  Number.parseInt(1.307e+10);
+  document.getElementById('laSqft').innerHTML = thousandCommaSeparator(laAreaSqft);
+  console.log(typeof laAreaSqft + 'laAreaSqft' + laAreaSqft);
+  console.log(typeof laAreaForSolarSqftNum + 'laAreaForSolarSqftNum' + laAreaForSolarSqftNum );
 
+  var laAreaPercentForSolar = Math.round((laAreaForSolarSqftNum / laAreaSqft) * 100); 
+  console.log(laAreaPercentForSolar);
+  document.getElementById('laAreaPercentForSolar').innerHTML = laAreaPercentForSolar + '%';
 
 });
 
