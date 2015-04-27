@@ -57,14 +57,13 @@ zipWeather.addEventListener('load', function() {
 
 //Los Angeles Electricity
   var laElectricityObj = JSON.parse(laZipElectricity.responseText);
-  var laElectricityAnnualAvg = thousandCommaSeparator(Math.round((laElectricityObj.meta.view.columns[15].cachedContents.sum * 1000000) / 365.24));
-
-  document.getElementById('laElectricityUsage').innerHTML = laElectricityAnnualAvg;
+  var laElectricityAnnualAvg = Math.round((laElectricityObj.meta.view.columns[15].cachedContents.sum * 1000000) / 365.24);
+  document.getElementById('laElectricityUsage').innerHTML = thousandCommaSeparator(laElectricityAnnualAvg);
 
 //Grape Solar Panel 390w 15.21% Efficiency http://solar-panels-review.toptenreviews.com/grape-solar-390w-review.html?cmpid=ttr-ls
 //71.1% efficiency for fixed position solar panels: http://www.solarpaneltilt.com/
 //Solar Panels Needed
-  var numSolarPanelsRaw = Number.parseInt(Number.parseInt(laElectricityAnnualAvg.replace(/\,/g, "")) / (Number.parseFloat(ghIrradianceDailyAvg) * 0.390 * 0.711)); 
+  var numSolarPanelsRaw = Number.parseInt(laElectricityAnnualAvg / (Number.parseFloat(ghIrradianceDailyAvg) * 0.390 * 0.711)); 
   var numSolarPanels = thousandCommaSeparator(numSolarPanelsRaw); 
   document.getElementById('numSolarPanelsNeeded').innerHTML = numSolarPanels;
 
@@ -84,12 +83,23 @@ zipWeather.addEventListener('load', function() {
 //Los Angeles City sqft source wikipedia. This only includes the land area. 
   var laAreaSqft =  Number.parseInt(1.307e+10);
   document.getElementById('laSqft').innerHTML = thousandCommaSeparator(laAreaSqft);
-  console.log(typeof laAreaSqft + 'laAreaSqft' + laAreaSqft);
-  console.log(typeof laAreaForSolarSqftNum + 'laAreaForSolarSqftNum' + laAreaForSolarSqftNum );
 
   var laAreaPercentForSolar = ((laAreaForSolarSqftNum / laAreaSqft) * 100).toFixed(2); 
-  console.log(laAreaPercentForSolar);
   document.getElementById('laAreaPercentForSolar').innerHTML = laAreaPercentForSolar + '%';
+
+  var solarPanelCost = 585 * numSolarPanelsRaw;
+  document.getElementById('solarPanelTotalCost').innerHTML = '$' + thousandCommaSeparator(solarPanelCost);
+
+//Los Angeles average cost per kWh http://www.bls.gov/regions/west/news-release/averageenergyprices_losangeles.htm ***API DOES EXIST - CHECK IT OUT***
+  var electricityCost = (0.215 * laElectricityAnnualAvg);
+  document.getElementById('cityElectricityCost').innerHTML = '$' + thousandCommaSeparator(electricityCost);
+ 
+  typeof solarPanelCost;
+  typeof electrictyCost;
+  var roiYearsPayOffSolar = (solarPanelCost / (electricityCost * 365.24));
+  document.getElementById('roiDays').innerHTML = (roiYearsPayOffSolar).toFixed(2);
+
+
 
 });
 
