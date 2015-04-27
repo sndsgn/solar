@@ -87,7 +87,7 @@ zipWeather.addEventListener('load', function() {
   console.log(typeof laAreaSqft + 'laAreaSqft' + laAreaSqft);
   console.log(typeof laAreaForSolarSqftNum + 'laAreaForSolarSqftNum' + laAreaForSolarSqftNum );
 
-  var laAreaPercentForSolar = Math.round((laAreaForSolarSqftNum / laAreaSqft) * 100); 
+  var laAreaPercentForSolar = ((laAreaForSolarSqftNum / laAreaSqft) * 100).toFixed(2); 
   console.log(laAreaPercentForSolar);
   document.getElementById('laAreaPercentForSolar').innerHTML = laAreaPercentForSolar + '%';
 
