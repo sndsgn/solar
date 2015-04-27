@@ -58,7 +58,10 @@ zipWeather.addEventListener('load', function() {
 //Los Angeles Electricity
   var laElectricityObj = JSON.parse(laZipElectricity.responseText);
   var laElectricityAnnualAvg = Math.round((laElectricityObj.meta.view.columns[15].cachedContents.sum * 1000000) / 365.24);
-  document.getElementById('laElectricityUsage').innerHTML = thousandCommaSeparator(laElectricityAnnualAvg);
+  document.getElementById('laElectricityUsage').innerHTML = laElectricityAnnualAvg;
+
+  console.log(typeof laElectricityAnnualAvg);
+
 
 //Grape Solar Panel 390w 15.21% Efficiency http://solar-panels-review.toptenreviews.com/grape-solar-390w-review.html?cmpid=ttr-ls
 //71.1% efficiency for fixed position solar panels: http://www.solarpaneltilt.com/
