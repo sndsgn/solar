@@ -3,14 +3,16 @@
 //AJAX request
 
 //Inspired by http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+var laZipElectricity = new XMLHttpRequest();
+var ghi = new XMLHttpRequest();
+var zipWeather = new XMLHttpRequest();
+
 function thousandCommaSeparator(num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-var zipWeather = new XMLHttpRequest();
 zipWeather.open('GET', 'http://api.worldweatheronline.com/premium/v1/past-weather.ashx?q=Los+Angeles&format=json&date=2009-12-23&key=5362d7ee160aa329b22c87b89aae8', true);
-zipWeather.send(null);
-
+zipWeather.send();
 zipWeather.addEventListener('load', function() {
 //Hours Sun Visible ***NOT YET SHOWING SUN VISIBLE TIME FOR TODAY() AND CITY CHOSEN***
   var zipWeatherObj = JSON.parse(zipWeather.responseText);
@@ -32,19 +34,18 @@ zipWeather.addEventListener('load', function() {
       return  sunVisibleTimeHours.toString() + ' hours ' + sunVisibleTimeMinutes.toString() + ' minutes';
       }
    };
-  document.getElementById('sunVisible').innerHTML = sunVisibleTime();
+  var sunVisibleTimeText = sunVisibleTime();
+  document.getElementById('sunVisible').innerHTML = sunVisibleTimeText;
 });
-
+console.log(zipWeather.readyState);
 
 //GHI Data for Los Angeles
-var ghi = new XMLHttpRequest();
 ghi.open('GET', 'http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=DPx3KUp9krBKyHIiDqd1axWqETim9pYy3BwT6f5z&address=Los+Angeles', true);
-ghi.send(null);
+ghi.send();
 
 //Inspired by http://eloquentjavascript.net/17_http.html
-var laZipElectricity = new XMLHttpRequest();
 laZipElectricity.open('GET', 'https://data.lacity.org/api/views/rijp-9dwj/rows.json', true);
-laZipElectricity.send(null);
+laZipElectricity.send();
 
 ghi.addEventListener('load',  function() {
 //ghIrradiance data object
