@@ -8,7 +8,7 @@ function thousandCommaSeparator(num) {
 }
 
 var zipWeather = new XMLHttpRequest();
-zipWeather.open('GET', '//api.worldweatheronline.com/premium/v1/past-weather.ashx?q=Los+Angeles&format=json&date=2009-12-23&key=5362d7ee160aa329b22c87b89aae8', true);
+zipWeather.open('GET', 'http://api.worldweatheronline.com/premium/v1/past-weather.ashx?q=Los+Angeles&format=json&date=2009-12-23&key=5362d7ee160aa329b22c87b89aae8', true);
 zipWeather.send(null);
 
 zipWeather.addEventListener('load', function() {
@@ -17,14 +17,14 @@ zipWeather.addEventListener('load', function() {
   var zipWeatherDate = zipWeatherObj['data']['weather'][0]['date']; 
   var zipSunRise = zipWeatherObj['data']['weather'][0]['astronomy'][0]['sunrise']; 
   var zipSunSet = zipWeatherObj['data']['weather'][0]['astronomy'][0]['sunset']; 
-  var sunRiseDateTime = new Date(zipWeatherDate + ' ' + zipSunRise);
-  var sunSetDateTime = new Date(zipWeatherDate + ' ' + zipSunSet);
-  var sunRiseDateHours = sunRiseDateTime.getHours(); 
-  var sunRiseDateMinutes = sunRiseDateTime.getMinutes(); 
-  var sunSetDateHours = sunSetDateTime.getHours(); 
-  var sunSetDateMinutes = sunSetDateTime.getMinutes(); 
-  var sunVisibleTimeHours = (sunSetDateHours - sunRiseDateHours);
-  var sunVisibleTimeMinutes = (sunSetDateMinutes - sunRiseDateMinutes);
+  var sunriseDateTime = new Date(zipWeatherDate + ' ' + zipSunRise);
+  var sunsetDateTime = new Date(zipWeatherDate + ' ' + zipSunSet);
+  var sunriseDateHours = sunriseDateTime.getHours(); 
+  var sunriseDateMinutes = sunriseDateTime.getMinutes(); 
+  var sunsetDateHours = sunsetDateTime.getHours(); 
+  var sunsetDateMinutes = sunsetDateTime.getMinutes(); 
+  var sunVisibleTimeHours = (sunsetDateHours - sunriseDateHours);
+  var sunVisibleTimeMinutes = (sunsetDateMinutes - sunriseDateMinutes);
   var sunVisibleTime = function() { 
     if(sunVisibleTimeMinutes < 0) {
       return ((sunVisibleTimeHours - 1).toString() + ' hours ' + (60 + sunVisibleTimeMinutes).toString() + ' minutes');
