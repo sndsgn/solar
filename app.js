@@ -7,7 +7,33 @@ function thousandCommaSeparator(num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+var zipWeather = new XMLHttpRequest();
+zipWeather.open('GET', 'http://api.worldweatheronline.com/premium/v1/past-weather.ashx?q=Los+Angeles&format=json&date=2009-12-23&key=5362d7ee160aa329b22c87b89aae8', true);
+zipWeather.send(null);
 
+zipWeather.addEventListener('load', function() {
+//Hours Sun Visible ***NOT YET SHOWING SUN VISIBLE TIME FOR TODAY() AND CITY CHOSEN***
+  var zipWeatherObj = JSON.parse(zipWeather.responseText);
+  var zipWeatherDate = zipWeatherObj['data']['weather'][0]['date']; 
+  var zipSunRise = zipWeatherObj['data']['weather'][0]['astronomy'][0]['sunrise']; 
+  var zipSunSet = zipWeatherObj['data']['weather'][0]['astronomy'][0]['sunset']; 
+  var sunriseDateTime = new Date(zipWeatherDate + ' ' + zipSunRise);
+  var sunsetDateTime = new Date(zipWeatherDate + ' ' + zipSunSet);
+  var sunriseDateHours = sunriseDateTime.getHours(); 
+  var sunriseDateMinutes = sunriseDateTime.getMinutes(); 
+  var sunsetDateHours = sunsetDateTime.getHours(); 
+  var sunsetDateMinutes = sunsetDateTime.getMinutes(); 
+  var sunVisibleTimeHours = (sunsetDateHours - sunriseDateHours);
+  var sunVisibleTimeMinutes = (sunsetDateMinutes - sunriseDateMinutes);
+  var sunVisibleTime = function() { 
+    if(sunVisibleTimeMinutes < 0) {
+      return ((sunVisibleTimeHours - 1).toString() + ' hours ' + (60 + sunVisibleTimeMinutes).toString() + ' minutes');
+    } else {
+      return  sunVisibleTimeHours.toString() + ' hours ' + sunVisibleTimeMinutes.toString() + ' minutes';
+      }
+   };
+  document.getElementById('sunVisible').innerHTML = sunVisibleTime();
+});
 
 
 //GHI Data for Los Angeles
@@ -74,37 +100,6 @@ ghi.addEventListener('load',  function() {
 //Contribution per Citizen
   var perResidentContribution = (solarPanelsCost / laCityPop);
   document.getElementById('perResidentContribution').innerHTML = '$' + thousandCommaSeparator(perResidentContribution.toFixed(2)); 
-
-
-var zipWeather = new XMLHttpRequest();
-zipWeather.open('GET', 'http://api.worldweatheronline.com/premium/v1/past-weather.ashx?q=Los+Angeles&format=json&date=2009-12-23&key=5362d7ee160aa329b22c87b89aae8', true);
-zipWeather.send(null);
-
-zipWeather.addEventListener('load', function() {
-//Hours Sun Visible ***NOT YET SHOWING SUN VISIBLE TIME FOR TODAY() AND CITY CHOSEN***
-  var zipWeatherObj = JSON.parse(zipWeather.responseText);
-  var zipWeatherDate = zipWeatherObj['data']['weather'][0]['date']; 
-  var zipSunRise = zipWeatherObj['data']['weather'][0]['astronomy'][0]['sunrise']; 
-  var zipSunSet = zipWeatherObj['data']['weather'][0]['astronomy'][0]['sunset']; 
-  var sunriseDateTime = new Date(zipWeatherDate + ' ' + zipSunRise);
-  var sunsetDateTime = new Date(zipWeatherDate + ' ' + zipSunSet);
-  var sunriseDateHours = sunriseDateTime.getHours(); 
-  var sunriseDateMinutes = sunriseDateTime.getMinutes(); 
-  var sunsetDateHours = sunsetDateTime.getHours(); 
-  var sunsetDateMinutes = sunsetDateTime.getMinutes(); 
-  var sunVisibleTimeHours = (sunsetDateHours - sunriseDateHours);
-  var sunVisibleTimeMinutes = (sunsetDateMinutes - sunriseDateMinutes);
-  var sunVisibleTime = function() { 
-    if(sunVisibleTimeMinutes < 0) {
-      return ((sunVisibleTimeHours - 1).toString() + ' hours ' + (60 + sunVisibleTimeMinutes).toString() + ' minutes');
-    } else {
-      return  sunVisibleTimeHours.toString() + ' hours ' + sunVisibleTimeMinutes.toString() + ' minutes';
-      }
-   };
-  document.getElementById('sunVisible').innerHTML = sunVisibleTime();
-});
-
-
 });
 
 
