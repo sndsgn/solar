@@ -29,7 +29,7 @@ laZipElectricity.open('GET', 'https://data.lacity.org/api/views/rijp-9dwj/rows.j
 laZipElectricity.send(null);
 
 var zipWeather = new XMLHttpRequest();
-zipWeather.open('GET', '//api.worldweatheronline.com/premium/v1/past-weather.ashx?q=San+Francisco&format=json&date=2009-12-23&key=5362d7ee160aa329b22c87b89aae8', true);
+zipWeather.open('GET', '//api.worldweatheronline.com/premium/v1/past-weather.ashx?q=Los+Angeles&format=json&date=2009-12-23&key=5362d7ee160aa329b22c87b89aae8', true);
 zipWeather.send(null);
 
 var ghi = new XMLHttpRequest();
@@ -38,6 +38,9 @@ ghi.send(null);
 
 
 zipWeather.addEventListener('load', function() {
+
+
+//Hours Sun Visible ***NOT YET SHOWING SUN VISIBLE TIME FOR TODAY() AND CITY CHOSEN***
   var zipWeatherObj = JSON.parse(zipWeather.responseText);
   var zipWeatherDate = zipWeatherObj['data']['weather'][0]['date']; 
   var zipSunRise = zipWeatherObj['data']['weather'][0]['astronomy'][0]['sunrise']; 
@@ -48,7 +51,18 @@ zipWeather.addEventListener('load', function() {
   var sunRiseDateMinutes = sunRiseDateTime.getMinutes(); 
   var sunSetDateHours = sunSetDateTime.getHours(); 
   var sunSetDateMinutes = sunSetDateTime.getMinutes(); 
-  var sunSetDateTime = new Date(zipWeatherDate + ' ' + zipSunSet);
+  var sunVisibleTimeHours = (sunSetDateHours - sunRiseDateHours);
+  console.log(sunVisibleTimeHours, typeof sunVisibleTimeHours); 
+  var sunVisibleTimeMinutes = (sunSetDateMinutes - sunRiseDateMinutes);
+  console.log(sunVisibleTimeMinutes, typeof sunVisibleTimeMinutes); 
+  var sunVisibleTime = function() { 
+    if(sunVisibleTimeMinutes < 0) {
+      return ((sunVisibleTimeHours - 1).toString() + ' hours ' + (60 + sunVisibleTimeMinutes).toString() + ' minutes');
+    } else {
+      return  sunVisibleTimeHours.toString() + ' hours ' + sunVisibleTimeMinutes.toString() + ' minutes';
+      }
+   };
+  document.getElementById('sunVisible').innerHTML = sunVisibleTime();
 
 //ghIrradiance data object
   var ghIrradianceObj = JSON.parse(ghi.responseText);
@@ -58,10 +72,7 @@ zipWeather.addEventListener('load', function() {
 //Los Angeles Electricity
   var laElectricityObj = JSON.parse(laZipElectricity.responseText);
   var laElectricityAnnualAvg = Math.round((laElectricityObj.meta.view.columns[15].cachedContents.sum * 1000000) / 365.24);
-  document.getElementById('laElectricityUsage').innerHTML = laElectricityAnnualAvg;
-
-  console.log(typeof laElectricityAnnualAvg);
-
+  document.getElementById('laElectricityUsage').innerHTML = thousandCommaSeparator(laElectricityAnnualAvg);
 
 //Grape Solar Panel 390w 15.21% Efficiency http://solar-panels-review.toptenreviews.com/grape-solar-390w-review.html?cmpid=ttr-ls
 //71.1% efficiency for fixed position solar panels: http://www.solarpaneltilt.com/
@@ -77,10 +88,7 @@ zipWeather.addEventListener('load', function() {
   var grapeSolarPanelsSqft = (grapeSolarPanelLengthIn/12) * (grapeSolarPanelWidthIn/12); 
   var laAreaForSolarSqftNum = Number.parseInt(Number.parseFloat(grapeSolarPanelsSqft) * Number.parseInt(numSolarPanelsRaw)); 
   var laAreaForSolarSqftString = thousandCommaSeparator(laAreaForSolarSqftNum );
-
-
   document.getElementById('solarPanelsSqft').innerHTML = thousandCommaSeparator(laAreaForSolarSqftNum); 
-
 
 
 //Los Angeles City sqft source wikipedia. This only includes the land area. 
@@ -90,21 +98,28 @@ zipWeather.addEventListener('load', function() {
   var laAreaPercentForSolar = ((laAreaForSolarSqftNum / laAreaSqft) * 100).toFixed(2); 
   document.getElementById('laAreaPercentForSolar').innerHTML = laAreaPercentForSolar + '%';
 
-  var solarPanelCost = 585 * numSolarPanelsRaw;
-  document.getElementById('solarPanelTotalCost').innerHTML = '$' + thousandCommaSeparator(solarPanelCost);
+  var solarPanelsCost = 585 * numSolarPanelsRaw;
+  document.getElementById('solarPanelTotalCost').innerHTML = '$' + thousandCommaSeparator(solarPanelsCost);
 
 //Los Angeles average cost per kWh http://www.bls.gov/regions/west/news-release/averageenergyprices_losangeles.htm ***API DOES EXIST - CHECK IT OUT***
   var electricityCost = (0.215 * laElectricityAnnualAvg);
   document.getElementById('cityElectricityCost').innerHTML = '$' + thousandCommaSeparator(electricityCost);
- 
-  typeof solarPanelCost;
-  typeof electrictyCost;
-  var roiYearsPayOffSolar = (solarPanelCost / (electricityCost * 365.24));
+
+
+//Number of years before you pay off Solar Panels
+  var roiYearsPayOffSolar = (solarPanelsCost / (electricityCost * 365.24));
   document.getElementById('roiDays').innerHTML = (roiYearsPayOffSolar).toFixed(2);
 
+//Population of City
+  var laCityPop = 3884300;
+  document.getElementById('cityPopulation').innerHTML = thousandCommaSeparator(laCityPop);
 
-
+//Contribution per Citizen
+  console.log(solarPanelsCost / laCityPop);
+  var perResidentContribution = (solarPanelsCost / laCityPop);
+  document.getElementById('perResidentContribution').innerHTML = '$' + thousandCommaSeparator(perResidentContribution.toFixed(2)); 
 });
+
 
 
 
