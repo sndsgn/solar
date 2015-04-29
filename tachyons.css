@@ -1621,7 +1621,7 @@ input[type="password"]:after,
 }
 
 .cf {
-  *zoom: 1;
+  zoom: 1;
 }
 
 /*

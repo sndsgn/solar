@@ -34,10 +34,10 @@ zipWeather.addEventListener('load', function() {
       return  sunVisibleTimeHours.toString() + ' hours ' + sunVisibleTimeMinutes.toString() + ' minutes';
       }
    };
-  var sunVisibleTimeText = sunVisibleTime();
-  document.getElementById('sunVisible').innerHTML = sunVisibleTimeText;
+  document.getElementById('sunVisible').innerHTML = sunVisibleTime();
 });
 console.log(zipWeather.readyState);
+console.log(zipWeather.response);
 
 //GHI Data for Los Angeles
 ghi.open('GET', 'http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=DPx3KUp9krBKyHIiDqd1axWqETim9pYy3BwT6f5z&address=Los+Angeles', true);
@@ -49,7 +49,7 @@ laZipElectricity.send();
 
 ghi.addEventListener('load',  function() {
 //ghIrradiance data object
-  var ghIrradianceObj = JSON.parse(ghi.responseText);
+  var ghIrradianceObj = JSON.parse(ghi.response);
   var ghIrradianceDailyAvg = ghIrradianceObj['outputs']['avg_ghi']['annual'];
   document.getElementById('ghIrradiance').innerHTML = ghIrradianceDailyAvg;
 
