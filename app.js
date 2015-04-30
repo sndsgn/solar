@@ -8,7 +8,7 @@ function thousandCommaSeparator(num) {
 //Data: The values returned are kWh/m2/day (kilowatt hours per square meter per day). Annual Average Daily. 
 //Data source: http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=DPx3KUp9krBKyHIiDqd1axWqETim9pYy3BwT6f5z&address=Los    +Angeles ******************REMOVE KEY********
 var ghi = new XMLHttpRequest();
-ghi.open('GET', 'ghiLA.json', true);
+ghi.open('GET', 'data/kwh-ghi/2009_1998avgGHILA.json', true);
 ghi.send();
 
 //Event listener for ghi XHR Request load and then proceeds with XHR request for LA Electricity Requirements.
@@ -16,7 +16,7 @@ ghi.send();
 //Data source: https://data.lacity.org/api/views/rijp-9dwj/rows.json
 ghi.addEventListener('load',  function() {
   var laElectricityAnnual = new XMLHttpRequest();
-  laElectricityAnnual.open('GET', 'lacityelectricitydata.json', true);
+  laElectricityAnnual.open('GET', 'data/kwh-consumption/2015_2003lacityelectricitydata.json', true);
   laElectricityAnnual.send();
   laElectricityAnnual.addEventListener('load', function() {
     //ghIrradiance JSON object
@@ -50,7 +50,6 @@ ghi.addEventListener('load',  function() {
     //http://en.wikipedia.org/wiki/Los_Angeles (469 land square miles)
     //Sqare miles to square feet conversion source: http://www.selectscg.com/customers/conversions/ConversionFormula.aspx (27889333.33333)
     var laAreaSqft = Math.round(469*27889333.33333);
-    console.log(laAreaSqft);
     document.getElementById('laSqft').innerHTML = thousandCommaSeparator(laAreaSqft);
 
     //Percent of city area covered in solar panels
@@ -66,19 +65,19 @@ ghi.addEventListener('load',  function() {
     document.getElementById('solarPanelTotalCost').innerHTML = '$' + thousandCommaSeparator(solarPanelsCost);
 
     //Los Angeles average cost per kWh http://www.bls.gov/regions/west/news-release/averageenergyprices_losangeles.htm ***API DOES EXIST - CHECK IT OUT***
-    var electricityCostDaily = (0.215 * laElectricityAnnualAvg);
-    document.getElementById('cityElectricityCostDaily').innerHTML = '$' + thousandCommaSeparator(electricityCostDaily);
+      var laElectricityCost = 0.215; 
+      var laElectricityCostDaily = (laElectricityCost * laElectricityAnnualAvg);
+      document.getElementById('cityElectricityCostDaily').innerHTML = '$' + thousandCommaSeparator(laElectricityCostDaily);
 
-    //Return on investment - Number of years before you pay off Solar Panels
-    var roiYearsPayOffSolar = (solarPanelsCost / (electricityCostDaily * 365.24));
-    document.getElementById('roiDays').innerHTML = (roiYearsPayOffSolar).toFixed(2);
+      //Return on investment - Number of years before you pay off Solar Panels
+      var roiYearsPayOffSolar = (solarPanelsCost / (laElectricityCostDaily * 365.24));
+      document.getElementById('roiDays').innerHTML = (roiYearsPayOffSolar).toFixed(2);
 
-    //Twenty year savings including degradation of panel output
-    //Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx
-    var solarPanelDepreciation =  (Math.pow(1.0004, 20));
-    var twentyNetYearSavings = ((((electricityCostDaily * 20) * (1 - (solarPanelDepreciation - 1))) * 365.24) - solarPanelsCost);
-
-    document.getElementById('twentyNetYearSavings').innerHTML = '$' + thousandCommaSeparator(Math.round(twentyNetYearSavings));
+      //Twenty year savings including degradation of panel output
+      //Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx
+      var solarPanelDepreciation =  (Math.pow(1.0004, 20));
+      var twentyNetYearSavings = ((((laElectricityCostDaily * 20) * (1 - (solarPanelDepreciation - 1))) * 365.24) - solarPanelsCost);
+      document.getElementById('twentyNetYearSavings').innerHTML = '$' + thousandCommaSeparator(Math.round(twentyNetYearSavings));
 
     //Population of City
     var laCityPop = 3884300;
@@ -87,7 +86,10 @@ ghi.addEventListener('load',  function() {
     //Contribution per Citizen
     var perResidentContribution = (solarPanelsCost / laCityPop);
     document.getElementById('perResidentContribution').innerHTML = '$' + thousandCommaSeparator(perResidentContribution.toFixed(2)); 
-  })
+
+
+  });
 });
+
 
 

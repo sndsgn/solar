@@ -1,0 +1,421 @@
+{
+  "meta" : {
+    "view" : {
+      "id" : "usfg-z9mx",
+      "name" : "Average Electricity Usage per Square Foot by Community Area",
+      "attribution" : "City of Chicago",
+      "attributionLink" : "http://www.cityofchicago.org",
+      "averageRating" : 0,
+      "category" : "Environment & Sustainable Development",
+      "createdAt" : 1367090023,
+      "description" : "Displays several units of energy consumption for households, businesses, and industries in the City of Chicago during 2010. Electric  The data was aggregated from ComEd and Peoples Natural Gas by Accenture. Electrical and gas usage data comprises 88 percent of Chicago's buildings in 2010. The electricity data comprises 68 percent of overall electrical usage in the city while gas data comprises 81 percent of all gas consumption in Chicago for 2010.\r\n\r\nCensus blocks with less than 4 accounts is displayed at the Community Area without further geographic identifiers. This dataset also contains selected variables describing selected characteristics of the Census block population, physical housing, and occupancy.",
+      "displayType" : "chart",
+      "downloadCount" : 553,
+      "indexUpdatedAt" : 1414517227,
+      "moderationStatus" : true,
+      "newBackend" : false,
+      "numberOfComments" : 0,
+      "oid" : 4736856,
+      "publicationAppendEnabled" : false,
+      "publicationDate" : 1375455563,
+      "publicationGroup" : 810824,
+      "publicationStage" : "published",
+      "rowsUpdatedAt" : 1375455128,
+      "rowsUpdatedBy" : "3qqc-w7ag",
+      "tableId" : 1014679,
+      "totalTimesRated" : 0,
+      "viewCount" : 8993,
+      "viewLastModified" : 1367115857,
+      "viewType" : "tabular",
+      "columns" : [ {
+        "id" : -1,
+        "name" : "sid",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":sid",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "id",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":id",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "position",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":position",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "created_at",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":created_at",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "created_meta",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":created_meta",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "updated_at",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":updated_at",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "updated_meta",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":updated_meta",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : -1,
+        "name" : "meta",
+        "dataTypeName" : "meta_data",
+        "fieldName" : ":meta",
+        "position" : 0,
+        "renderTypeName" : "meta_data",
+        "format" : {
+        }
+      }, {
+        "id" : 86550744,
+        "name" : "COMMUNITY AREA NAME",
+        "dataTypeName" : "text",
+        "description" : "Community Name",
+        "fieldName" : "community_area_name",
+        "position" : 1,
+        "renderTypeName" : "text",
+        "tableColumnId" : 9724862,
+        "width" : 232,
+        "cachedContents" : {
+          "non_null" : 77,
+          "smallest" : "Albany Park",
+          "null" : 0,
+          "largest" : "Woodlawn",
+          "top" : [ {
+            "count" : 20,
+            "item" : "Loop"
+          }, {
+            "count" : 19,
+            "item" : "Lower West Side"
+          }, {
+            "count" : 18,
+            "item" : "McKinley Park"
+          }, {
+            "count" : 17,
+            "item" : "Montclare"
+          }, {
+            "count" : 16,
+            "item" : "Morgan Park"
+          }, {
+            "count" : 15,
+            "item" : "Mount Greenwood"
+          }, {
+            "count" : 14,
+            "item" : "Near North Side"
+          }, {
+            "count" : 13,
+            "item" : "Near South Side"
+          }, {
+            "count" : 12,
+            "item" : "Near West Side"
+          }, {
+            "count" : 11,
+            "item" : "New City"
+          }, {
+            "count" : 10,
+            "item" : "North Center"
+          }, {
+            "count" : 9,
+            "item" : "North Lawndale"
+          }, {
+            "count" : 8,
+            "item" : "North Park"
+          }, {
+            "count" : 7,
+            "item" : "Norwood Park"
+          }, {
+            "count" : 6,
+            "item" : "O'Hare"
+          }, {
+            "count" : 5,
+            "item" : "Oakland"
+          }, {
+            "count" : 4,
+            "item" : "Portage Park"
+          }, {
+            "count" : 3,
+            "item" : "Pullman"
+          }, {
+            "count" : 2,
+            "item" : "Riverdale"
+          }, {
+            "count" : 1,
+            "item" : "Rogers Park"
+          } ]
+        },
+        "format" : {
+          "align" : "left",
+          "drill_down" : "true"
+        }
+      }, {
+        "id" : 86550777,
+        "name" : "KWH TOTAL SQFT",
+        "dataTypeName" : "number",
+        "description" : "Total square footage associated with the electric energy usage in 2010 according to Cook County Assessor Records.",
+        "fieldName" : "kwh_total_sqft",
+        "position" : 2,
+        "renderTypeName" : "number",
+        "tableColumnId" : 9724895,
+        "width" : 161,
+        "cachedContents" : {
+          "non_null" : 77,
+          "smallest" : "9943.3150000000000000",
+          "sum" : "3458867.4870705335010000",
+          "null" : 0,
+          "average" : "44920.35697494199",
+          "largest" : "1154623.225806451613",
+          "top" : [ {
+            "count" : 20,
+            "item" : "1154623.225806451613"
+          }, {
+            "count" : 19,
+            "item" : "19432.816945606695"
+          }, {
+            "count" : 18,
+            "item" : "15189.439024390244"
+          }, {
+            "count" : 17,
+            "item" : "15149.905714285714"
+          }, {
+            "count" : 16,
+            "item" : "18288.906250000000"
+          }, {
+            "count" : 15,
+            "item" : "23247.730978260870"
+          }, {
+            "count" : 14,
+            "item" : "243510.761904761905"
+          }, {
+            "count" : 13,
+            "item" : "346281.120689655172"
+          }, {
+            "count" : 12,
+            "item" : "85798.808648648649"
+          }, {
+            "count" : 11,
+            "item" : "16270.093944099379"
+          }, {
+            "count" : 10,
+            "item" : "16358.571184995737"
+          }, {
+            "count" : 9,
+            "item" : "17661.371743486974"
+          }, {
+            "count" : 8,
+            "item" : "23927.268240343348"
+          }, {
+            "count" : 7,
+            "item" : "19066.017543859649"
+          }, {
+            "count" : 6,
+            "item" : "106502.403225806452"
+          }, {
+            "count" : 5,
+            "item" : "22757.392523364486"
+          }, {
+            "count" : 4,
+            "item" : "15386.944927536232"
+          }, {
+            "count" : 3,
+            "item" : "37305.855614973262"
+          }, {
+            "count" : 2,
+            "item" : "85493.478260869565"
+          }, {
+            "count" : 1,
+            "item" : "25063.958955223881"
+          } ]
+        },
+        "format" : {
+          "precisionStyle" : "standard",
+          "grouping_aggregate" : "average",
+          "align" : "right",
+          "noCommas" : "false"
+        }
+      } ],
+      "displayFormat" : {
+        "chartType" : "treemap",
+        "valueColumns" : [ {
+          "fieldName" : "kwh_total_sqft"
+        } ],
+        "fixedColumns" : [ "community_area_name" ],
+        "colors" : [ "#7f6000", "#bf9000", "#f1c232", "#ffd966", "#ffe599" ]
+      },
+      "grants" : [ {
+        "inherited" : true,
+        "type" : "viewer",
+        "flags" : [ "public" ]
+      } ],
+      "metadata" : {
+        "custom_fields" : {
+          "Metadata" : {
+            "Last Updated Date via Automated Load" : "",
+            "Time Period" : "2010",
+            "Data Owner" : "",
+            "Frequency" : "Updated as needed"
+          }
+        },
+        "renderTypeConfig" : {
+          "visible" : {
+            "chart" : true
+          }
+        },
+        "availableDisplayTypes" : [ "chart", "table", "fatrow", "page" ],
+        "thumbnail" : {
+          "page" : {
+            "created" : true,
+            "selection" : {
+              "height" : 305,
+              "width" : 571,
+              "y1" : 202,
+              "y2" : 507,
+              "x2" : 1440,
+              "x1" : 869
+            },
+            "filename" : "page.png-571.305.869.202.png"
+          }
+        },
+        "rdfSubject" : "0"
+      },
+      "owner" : {
+        "id" : "3qqc-w7ag",
+        "displayName" : "Tom Schenk Jr",
+        "profileImageUrlLarge" : "/images/profile/6571/1447/city_of_chicago_seal_large.jpg",
+        "profileImageUrlMedium" : "/images/profile/6571/1447/city_of_chicago_seal_thumb.jpg",
+        "profileImageUrlSmall" : "/images/profile/6571/1447/city_of_chicago_seal_tiny.jpg",
+        "roleName" : "administrator",
+        "screenName" : "Tom Schenk Jr",
+        "rights" : [ "create_datasets", "edit_others_datasets", "edit_sdp", "edit_site_theme", "moderate_comments", "manage_users", "chown_datasets", "edit_nominations", "approve_nominations", "feature_items", "federations", "manage_stories", "manage_approval", "change_configurations", "view_domain", "view_others_datasets", "edit_pages", "create_pages", "view_goals", "view_dashboards", "edit_goals", "edit_dashboards", "create_dashboards" ]
+      },
+      "query" : {
+        "groupBys" : [ {
+          "columnId" : 86550744,
+          "type" : "column"
+        } ]
+      },
+      "rights" : [ "read" ],
+      "tableAuthor" : {
+        "id" : "3qqc-w7ag",
+        "displayName" : "Tom Schenk Jr",
+        "profileImageUrlLarge" : "/images/profile/6571/1447/city_of_chicago_seal_large.jpg",
+        "profileImageUrlMedium" : "/images/profile/6571/1447/city_of_chicago_seal_thumb.jpg",
+        "profileImageUrlSmall" : "/images/profile/6571/1447/city_of_chicago_seal_tiny.jpg",
+        "roleName" : "administrator",
+        "screenName" : "Tom Schenk Jr",
+        "rights" : [ "create_datasets", "edit_others_datasets", "edit_sdp", "edit_site_theme", "moderate_comments", "manage_users", "chown_datasets", "edit_nominations", "approve_nominations", "feature_items", "federations", "manage_stories", "manage_approval", "change_configurations", "view_domain", "view_others_datasets", "edit_pages", "create_pages", "view_goals", "view_dashboards", "edit_goals", "edit_dashboards", "create_dashboards" ]
+      },
+      "tags" : [ "sustainability", "energy" ]
+    }
+  },
+  "data" : [ [ 1154, "FFAB8E79-F489-4E48-B694-AA3D612BC4A3", 1154, 1366867062, "700397", 1366867062, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Albany Park", "16294.870826010545" ]
+, [ 1549, "FF347259-C695-44EB-B213-05A22F08102B", 1549, 1366867063, "700397", 1366867063, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Archer Heights", "20489.034120734908" ]
+, [ 1831, "FF97F188-0C89-40B9-B0C4-4934F9F62147", 1831, 1366867063, "700397", 1366867063, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Armour Square", "25015.032846715328" ]
+, [ 2699, "FFF90102-488C-4B9B-8A62-4585C503D8C8", 2699, 1366867064, "700397", 1366867064, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Ashburn", "20145.450231481481" ]
+, [ 4125, "FFB778C1-8B2E-4D9E-8121-11928DCA2B0F", 4125, 1366867065, "700397", 1366867065, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Auburn Gresham", "15176.979359430605" ]
+, [ 6653, "FFCEA88F-22CC-4C6E-B6FF-B7F828408D60", 6653, 1366867067, "700397", 1366867067, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Austin", "18483.567361668003" ]
+, [ 6990, "FFBFF2A5-A709-4AE0-A2FD-0053F47521A0", 6990, 1366867067, "700397", 1366867067, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Avalon Park", "15436.474474474474" ]
+, [ 7978, "FFD616FF-2FC4-4140-93D3-0BB7885D0FF1", 7978, 1366867068, "700397", 1366867068, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Avondale", "16197.713547052740" ]
+, [ 9790, "FFE5FD40-8723-4179-92D2-3A1E65C2CDF8", 9790, 1366867070, "700397", 1366867070, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Belmont Cragin", "14638.356623812186" ]
+, [ 10357, "FF2E2100-C99F-464B-899B-38EA1ED1337F", 10357, 1366867070, "700397", 1366867070, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Beverly", "23356.445632798574" ]
+, [ 11309, "FFD8DFE7-DE74-404F-A14E-1AD470E7A545", 11309, 1366867071, "700397", 1366867071, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Bridgeport", "16708.843850267380" ]
+, [ 12272, "FFA2B9B5-AF9B-492C-A41F-0D48A9F8A8E4", 12272, 1366867072, "700397", 1366867072, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Brighton Park", "15669.251314405889" ]
+, [ 12388, "FDE2D3BA-EE24-4E5D-A706-F9A3A744EA48", 12388, 1366867072, "700397", 1366867072, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Burnside", "17402.800000000000" ]
+, [ 12882, "FF9079E8-8F5E-4B6C-98E6-D4BE919008D1", 12882, 1366867072, "700397", 1366867072, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Calumet Heights", "15050.506147540984" ]
+, [ 13870, "FFF62386-EAA1-42B6-8F56-6E9862928D3E", 13870, 1366867073, "700397", 1366867073, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Chatham", "17510.804102564103" ]
+, [ 15241, "FFE90928-643E-4A74-985F-FBA47CA27E85", 15241, 1366867074, "700397", 1366867074, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Chicago Lawn", "12042.869532987398" ]
+, [ 15853, "FFF5CECA-E1FB-451F-8F7D-0DF1531D0DC8", 15853, 1366867075, "700397", 1366867075, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Clearing", "18712.637417218543" ]
+, [ 16043, "FFD10083-2B2C-4C82-829E-C64AB2D47C8D", 16043, 1366867075, "700397", 1366867075, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Douglas", "48197.592178770950" ]
+, [ 17139, "FF97C3F9-81CC-4BFA-8031-FFBE7F850546", 17139, 1366867076, "700397", 1366867076, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Dunning", "17823.471127406049" ]
+, [ 17763, "FFFA7F46-578D-48A1-83F6-FDA3A9C7E4C9", 17763, 1366867077, "700397", 1366867077, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "East Garfield Park", "16734.564860426929" ]
+, [ 18367, "FFE7C2E1-286D-4E65-AEC8-9433895F073C", 18367, 1366867077, "700397", 1366867077, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "East Side", "12885.862944162437" ]
+, [ 19407, "FFB136E9-6A6B-437B-8886-89F998CBE27F", 19407, 1366867078, "700397", 1366867078, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Edgewater", "46046.930460333007" ]
+, [ 19737, "FE504593-9714-4CC9-A85B-E694A57754FA", 19737, 1366867078, "700397", 1366867078, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Edison Park", "18749.923076923077" ]
+, [ 20842, "FF6CFD27-C342-4AB4-90A8-005D80DA718A", 20842, 1366867079, "700397", 1366867079, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Englewood", "12779.626506024096" ]
+, [ 21361, "FFEB016F-870B-4F27-853C-584CCE4429D6", 21361, 1366867080, "700397", 1366867080, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Forest Glen", "22506.386407766990" ]
+, [ 21486, "FF3365BA-267A-4674-8335-BE1BA0A4363D", 21486, 1366867080, "700397", 1366867080, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Fuller Park", "12750.282258064516" ]
+, [ 22313, "FFBF724E-1A37-4C44-89B8-E9BAD70E7A04", 22313, 1366867081, "700397", 1366867081, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Gage Park", "14265.605134474328" ]
+, [ 23238, "FFE4D616-0F6A-4DF9-8E78-D6A990DCA278", 23238, 1366867081, "700397", 1366867081, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Garfield Ridge", "15766.842622950820" ]
+, [ 23872, "FFE6C273-5027-4AA4-8290-C4C795EEDAC1", 23872, 1366867082, "700397", 1366867082, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Grand Boulevard", "18386.252854812398" ]
+, [ 24989, "FFD80E47-D7D9-44C9-93E5-EE1694472433", 24989, 1366867083, "700397", 1366867083, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Greater Grand Crossing", "13063.327838827839" ]
+, [ 25317, "FD82D842-4030-4724-891D-A598F584B0AC", 25317, 1366867083, "700397", 1366867083, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Hegewisch", "12238.351681957187" ]
+, [ 25881, "FFE7021D-F828-43C5-A864-C283AC41113A", 25881, 1366867084, "700397", 1366867084, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Hermosa", "15269.632911392405" ]
+, [ 27373, "FFC6867A-78A7-4BCE-A598-A113C8D4235C", 27373, 1366867085, "700397", 1366867085, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Humboldt Park", "16377.577975376197" ]
+, [ 27795, "FE673E3E-9F26-48B6-A346-14BCA30CE1CA", 27795, 1366867085, "700397", 1366867085, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Hyde Park", "43541.864077669903" ]
+, [ 29439, "FFCED6BD-5DC3-4A38-AB2A-884D57656D42", 29439, 1366867087, "700397", 1366867087, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Irving Park", "15833.014805675509" ]
+, [ 30265, "FFB6CC93-7EA8-4675-9CA2-963FAEE59B9E", 30265, 1366867088, "700397", 1366867088, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Jefferson Park", "16382.036159600998" ]
+, [ 30502, "FEE160EB-ACD9-43FC-8A29-5B28423AA113", 30502, 1366867088, "700397", 1366867088, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Kenwood", "59161.974468085106" ]
+, [ 32568, "FFC59F10-214F-4B7D-8FB2-2B31F958A1EA", 32568, 1366867090, "700397", 1366867090, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Lakeview", "35483.425406203840" ]
+, [ 34051, "FFD2D5D8-4D02-4AC5-AB6A-07E2909F3093", 34051, 1366867091, "700397", 1366867091, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Lincoln Park", "32322.008196721311" ]
+, [ 35277, "FFFA7DCE-C8DE-4EC2-80FD-001F7B24DD92", 35277, 1366867092, "700397", 1366867092, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Lincoln Square", "16754.323140495868" ]
+, [ 37620, "FFD3BAB0-5E79-408A-9729-24D1AB25E521", 37620, 1366867094, "700397", 1366867094, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Logan Square", "14954.558581928232" ]
+, [ 37783, "FD8362F7-8843-44FB-8F3C-86DE156B6073", 37783, 1366867094, "700397", 1366867094, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Loop", "1154623.225806451613" ]
+, [ 38769, "FFDCD5C2-0ADB-43FD-ADDD-3F725B7BAECE", 38769, 1366867095, "700397", 1366867095, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Lower West Side", "19432.816945606695" ]
+, [ 39227, "FFE50E8D-60FE-44A0-8706-63BF01BDD147", 39227, 1366867095, "700397", 1366867095, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "McKinley Park", "15189.439024390244" ]
+, [ 39582, "FFBB8BE0-2777-494E-86DB-CAFE5A0BD92D", 39582, 1366867096, "700397", 1366867096, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Montclare", "15149.905714285714" ]
+, [ 40196, "FEF0236C-2070-4F0A-A744-B2DFA44F4FC3", 40196, 1366867096, "700397", 1366867096, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Morgan Park", "18288.906250000000" ]
+, [ 40566, "FFE5D653-FB56-4552-B4E0-5545B4E1B5C5", 40566, 1366867097, "700397", 1366867097, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Mount Greenwood", "23247.730978260870" ]
+, [ 41232, "FFBEE01A-56AC-40F7-B62B-2D9BB6A4913B", 41232, 1366867097, "700397", 1366867097, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Near North Side", "243510.761904761905" ]
+, [ 41352, "F9164BD1-EE1F-4801-BD6B-6A16F0E2E435", 41352, 1366867097, "700397", 1366867097, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Near South Side", "346281.120689655172" ]
+, [ 42319, "FFCE3D87-BAA2-4678-BC35-57CE171F1365", 42319, 1366867098, "700397", 1366867098, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Near West Side", "85798.808648648649" ]
+, [ 43633, "FFA61E61-9BAB-41B4-AA64-183284EDA393", 43633, 1366867099, "700397", 1366867099, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "New City", "16270.093944099379" ]
+, [ 44824, "FFF56DF3-E2C2-420E-B9F9-5BC7376D7994", 44824, 1366867100, "700397", 1366867100, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "North Center", "16358.571184995737" ]
+, [ 45853, "FFEC3239-E165-4223-BD56-441C777CA2B5", 45853, 1366867101, "700397", 1366867101, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "North Lawndale", "17661.371743486974" ]
+, [ 46324, "FFE97F70-00F9-4D79-800A-4B9B59A2D9FC", 46324, 1366867102, "700397", 1366867102, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "North Park", "23927.268240343348" ]
+, [ 47415, "FF607277-03D5-4F3D-ADF6-8585F1A0F0DD", 47415, 1366867103, "700397", 1366867103, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Norwood Park", "19066.017543859649" ]
+, [ 47539, "FBA6325B-236E-4C40-9FD1-C56357C670FC", 47539, 1366867103, "700397", 1366867103, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "O'Hare", "106502.403225806452" ]
+, [ 47647, "FD03769C-219D-42AA-965B-2C03CD4A14FD", 47647, 1366867103, "700397", 1366867103, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Oakland", "22757.392523364486" ]
+, [ 49397, "FFFC0854-E3EB-43AB-BD0E-895147489517", 49397, 1366867104, "700397", 1366867104, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Portage Park", "15386.944927536232" ]
+, [ 49585, "FDF3513E-2C8E-4B8C-B5F7-0F981827BA61", 49585, 1366867105, "700397", 1366867105, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Pullman", "37305.855614973262" ]
+, [ 49646, "FE93C4F4-03C2-4FEC-A3B2-B7A848D5DC45", 49646, 1366867105, "700397", 1366867105, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Riverdale", "85493.478260869565" ]
+, [ 50730, "FF657143-37ED-444E-866D-5ED11CC71E92", 50730, 1366867106, "700397", 1366867106, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Rogers Park", "25063.958955223881" ]
+, [ 52205, "FFE3D466-5A61-4D2C-B31D-1F20DB294144", 52205, 1366867107, "700397", 1366867107, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Roseland", "11945.143835616438" ]
+, [ 53214, "FF5CC455-624D-45E0-AC6F-81F94E4B6218", 53214, 1366867108, "700397", 1366867108, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "South Chicago", "13393.708669354839" ]
+, [ 53606, "FDB144D9-0443-4F3E-BF42-CCAB8680C414", 53606, 1366867108, "700397", 1366867108, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "South Deering", "24817.349489795918" ]
+, [ 54934, "FFD774BA-7419-4610-A1D7-15B6DD58A0E6", 54934, 1366867109, "700397", 1366867109, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "South Lawndale", "20820.053435114504" ]
+, [ 56152, "FFCE1405-A319-4485-BC5A-51591CF16067", 56152, 1366867110, "700397", 1366867110, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "South Shore", "24347.069081718618" ]
+, [ 57003, "FFD98DF0-DC3F-4B08-A5F0-6AA3B38F476C", 57003, 1366867111, "700397", 1366867111, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Uptown", "43852.171668667467" ]
+, [ 57779, "FFF9D144-560D-4CB8-BAED-3ACBF43EC708", 57779, 1366867112, "700397", 1366867112, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Washington Heights", "14393.336375488918" ]
+, [ 58032, "FFA3E96C-2733-4101-9166-7D5DBCED77C9", 58032, 1366867112, "700397", 1366867112, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Washington Park", "18691.353658536585" ]
+, [ 58424, "FFD8AA6D-E51B-47C5-AA61-496D327D54DF", 58424, 1366867112, "700397", 1366867112, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "West Elsdon", "14506.410526315789" ]
+, [ 59651, "FFB8A880-70BB-420C-9F80-423FB47AD410", 59651, 1366867113, "700397", 1366867113, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "West Englewood", "9943.3150000000000000" ]
+, [ 60189, "FFF91EE9-0AFE-4BDA-B12E-2DE2F72EC972", 60189, 1366867114, "700397", 1366867114, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "West Garfield Park", "16475.932950191571" ]
+, [ 60882, "FFB560EE-3485-44C4-9193-60AD3C204396", 60882, 1366867114, "700397", 1366867114, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "West Lawn", "22612.289665211063" ]
+, [ 61989, "FFAA5E67-17D9-408C-A6B3-BCFEE057D637", 61989, 1366867115, "700397", 1366867115, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "West Pullman", "10081.135407136322" ]
+, [ 63583, "FFEE6712-BCEA-4A90-9669-1BA938364493", 63583, 1366867117, "700397", 1366867117, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "West Ridge", "22241.929936305732" ]
+, [ 66452, "FFFE7E65-4329-449B-81D5-94D31F6C872D", 66452, 1366867119, "700397", 1366867119, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "West Town", "17202.360609280907" ]
+, [ 67051, "FEFE43B3-0BEA-4D8E-91A6-0353D8BB29B5", 67051, 1366867120, "700397", 1366867120, "700397", "{\n  \"invalidCells\" : {\n    \"9724894\" : \"Less than 4\",\n    \"9724879\" : \"Less than 4\"\n  }\n}", "Woodlawn", "19620.781569965870" ]
+ ]
+}

@@ -1,0 +1,19 @@
+{
+  "meta" : {
+    "view" : {
+      "name": "Electricity costs per city by kWh in March 2015",
+      "attribution": "http://www.bls.gov/regions/west/news-release/",
+    },
+  },
+  "city": {
+    "Los Angeles" : "0.215",
+    "Riverside" : "0.215",
+    "Orange County" : "0.215",
+    "San Francisco" : "0.224",
+    "San Jose" : "0.224",
+    "Oakland" : "0.224",
+    "Seattle" : "0.096",
+    "Tacoma" : "0.096",
+    "Bremerton" : "0.096"
+  }
+}  
