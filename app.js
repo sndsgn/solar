@@ -57,7 +57,7 @@ ghi.addEventListener('load',  function() {
     var laAreaPercentForSolar = ((laAreaForSolarSqftNum / laAreaSqft) * 100).toFixed(2); 
     document.getElementById('laAreaPercentForSolar').innerHTML = laAreaPercentForSolar + '%';
 
-   //Gallons of water Saved based on stats here for nuclear energy being 600 gallons per mWh http://cleantechnica.com/2014/03/22/solar-power-water-use-infographic/
+   //Gallons of water saved per year based on stats here for nuclear energy being 600 gallons per mWh http://cleantechnica.com/2014/03/22/solar-power-water-use-infographic/
     var waterSavedPerKwh = (600/1000) * laElectricityAnnualAvg;
     document.getElementById('waterSaved').innerHTML = thousandCommaSeparator(Math.round(waterSavedPerKwh));
 
@@ -66,12 +66,19 @@ ghi.addEventListener('load',  function() {
     document.getElementById('solarPanelTotalCost').innerHTML = '$' + thousandCommaSeparator(solarPanelsCost);
 
     //Los Angeles average cost per kWh http://www.bls.gov/regions/west/news-release/averageenergyprices_losangeles.htm ***API DOES EXIST - CHECK IT OUT***
-    var electricityCost = (0.215 * laElectricityAnnualAvg);
-    document.getElementById('cityElectricityCost').innerHTML = '$' + thousandCommaSeparator(electricityCost);
+    var electricityCostDaily = (0.215 * laElectricityAnnualAvg);
+    document.getElementById('cityElectricityCostDaily').innerHTML = '$' + thousandCommaSeparator(electricityCostDaily);
 
-    //Number of years before you pay off Solar Panels
-    var roiYearsPayOffSolar = (solarPanelsCost / (electricityCost * 365.24));
+    //Return on investment - Number of years before you pay off Solar Panels
+    var roiYearsPayOffSolar = (solarPanelsCost / (electricityCostDaily * 365.24));
     document.getElementById('roiDays').innerHTML = (roiYearsPayOffSolar).toFixed(2);
+
+    //Twenty year savings including degradation of panel output
+    //Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx
+    var solarPanelDepreciation =  (Math.pow(1.0004, 20));
+    var twentyNetYearSavings = ((((electricityCostDaily * 20) * (1 - (solarPanelDepreciation - 1))) * 365.24) - solarPanelsCost);
+
+    document.getElementById('twentyNetYearSavings').innerHTML = '$' + thousandCommaSeparator(Math.round(twentyNetYearSavings));
 
     //Population of City
     var laCityPop = 3884300;
