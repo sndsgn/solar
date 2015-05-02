@@ -27,15 +27,15 @@ ghi.addEventListener('load',  function() {
     var ghIrradianceDailyAvg = ghIrradianceObj['outputs']['avg_ghi']['annual'];
     document.getElementById('ghIrradiance').innerHTML = ghIrradianceDailyAvg;
 
-    //Los Angeles Electricity
+    //Los Angeles Electricity for 2012-2013 broken to into daily use
     var laElectricityObj = JSON.parse(laElectricityAnnual.responseText);
-    var laElectricityAnnualAvg = Math.round((laElectricityObj.meta.view.columns[15].cachedContents.sum * 1000000) / 365.24);
-    document.getElementById('laElectricityUsage').innerHTML = thousandCommaSeparator(laElectricityAnnualAvg);
+    var laElectricityDailyAvg = Math.round((laElectricityObj.meta.view.columns[15].cachedContents.sum * 1000000) / 365.24);
+    document.getElementById('laElectricityDailyUsage').innerHTML = thousandCommaSeparator(laElectricityDailyAvg);
 
     //Solar Panels Needed based on Grape Solar Panel 390 watt
     //Grape Solar Panel 390w 15.21% Efficiency http://solar-panels-review.toptenreviews.com/grape-solar-390w-review.html?cmpid=ttr-ls
     //71.1% efficiency for fixed position solar panels: http://www.solarpaneltilt.com/
-    var numSolarPanels= (laElectricityAnnualAvg / (ghIrradianceDailyAvg * 0.390 * 0.711)).toFixed(0); 
+    var numSolarPanels= (laElectricityDailyAvg / (ghIrradianceDailyAvg * 0.390 * 0.711)).toFixed(0); 
     document.getElementById('numSolarPanelsNeeded').innerHTML = thousandCommaSeparator(numSolarPanels); 
 
     //Area needed for solar panels in sqft based on Grape Solar Panel 390 watt
@@ -57,26 +57,37 @@ ghi.addEventListener('load',  function() {
     document.getElementById('laAreaPercentForSolar').innerHTML = laAreaPercentForSolar + '%';
 
    //Gallons of water saved per year based on stats here for nuclear energy being 600 gallons per mWh http://cleantechnica.com/2014/03/22/solar-power-water-use-infographic/
-    var waterSavedPerKwh = (600/1000) * laElectricityAnnualAvg;
+    var waterSavedPerKwh = (600/1000) * laElectricityDailyAvg;
     document.getElementById('waterSaved').innerHTML = thousandCommaSeparator(Math.round(waterSavedPerKwh));
 
     //Cost of solar panels needed to make the city sustainable
+    //Source for price per Grape Solar 390 watt panel: http://www.freecleansolar.com/390W-solar-panel-Grape-GS-S-390-TS-mono-p/gs-s-390-ts.htm?gclid=Cj0KEQjwyIyqBRD4janGs5e67IsBEiQAoF8DGtxLzucEC_zw3ED8ARPd3pIyd8wjR5V0w9Cj8bWJBq4aAtwI8P8HAQ
     var solarPanelsCost = 585 * numSolarPanels;
     document.getElementById('solarPanelTotalCost').innerHTML = '$' + thousandCommaSeparator(solarPanelsCost);
 
     //Los Angeles average cost per kWh http://www.bls.gov/regions/west/news-release/averageenergyprices_losangeles.htm ***API DOES EXIST - CHECK IT OUT***
       var laElectricityCost = 0.215; 
-      var laElectricityCostDaily = (laElectricityCost * laElectricityAnnualAvg);
+      var laElectricityCostDaily = (laElectricityCost * laElectricityDailyAvg);
       document.getElementById('cityElectricityCostDaily').innerHTML = '$' + thousandCommaSeparator(laElectricityCostDaily);
 
+      //Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx
+      //****pow function turning 1.0004 into 0.00039999999999995595 ****
+      var solarDepreciationAvg =  function(years) {
+          var i;
+          var accumulator = 0;
+          for(i = 1; i <= years; i +=1) {
+            accumulator += ((Math.pow((1 + 0.004), i)) - 1);
+          }
+          return accumulator / years;
+      };
+
       //Return on investment - Number of years before you pay off Solar Panels
-      var roiYearsPayOffSolar = (solarPanelsCost / (laElectricityCostDaily * 365.24));
+      var roiYearsPayOffSolar = (solarPanelsCost / (laElectricityCostDaily * 365.24) / (1 - solarDepreciationAvg(1)));
       document.getElementById('roiDays').innerHTML = (roiYearsPayOffSolar).toFixed(2);
 
       //Twenty year savings including degradation of panel output
       //Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx
-      var solarPanelDepreciation =  (Math.pow(1.0004, 20));
-      var twentyNetYearSavings = ((((laElectricityCostDaily * 20) * (1 - (solarPanelDepreciation - 1))) * 365.24) - solarPanelsCost);
+      var twentyNetYearSavings = ((((laElectricityCostDaily * 20) * (1 - solarDepreciationAvg(20))) * 365.24) - solarPanelsCost);
       document.getElementById('twentyNetYearSavings').innerHTML = '$' + thousandCommaSeparator(Math.round(twentyNetYearSavings));
 
     //Population of City
