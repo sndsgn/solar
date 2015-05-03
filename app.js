@@ -32,7 +32,8 @@ ghi.addEventListener('load',  function() {
 
     //Los Angeles Electricity for 2012-2013 broken to into daily use
     var laElectricityObj = JSON.parse(laElectricityAnnual.responseText);
-    var laElectricityDailyAvg = Math.round((laElectricityObj.meta.view.columns[15].cachedContents.sum * 1000000) / daysInYear);
+    var laElectricityYearlyAvg = Math.round((laElectricityObj.meta.view.columns[15].cachedContents.sum * 1000000));
+    var laElectricityDailyAvg = Math.round(laElectricityYearlyAvg / daysInYear);
     document.getElementById('laElectricityDailyUsage').innerHTML = thousandCommaSeparator(laElectricityDailyAvg);
 
     //Solar Panels Needed based on Grape Solar Panel 390 watt
@@ -68,7 +69,7 @@ ghi.addEventListener('load',  function() {
     //Source: http://www.eia.gov/tools/faqs/faq.cfm?id=74&t=11
     var lbsCo2PerKwh = 2.07;
     var tonsCo2PerKwh = lbsCo2PerKwh / 2000;
-    var tonsCo2Reduced =  (((laElectricityDailyAvg * daysInYear) * tonsCo2PerKwh).toFixed(0));
+    var tonsCo2Reduced =  ((laElectricityYearlyAvg  * tonsCo2PerKwh).toFixed(0));
     document.getElementById('co2Reduced').innerHTML = thousandCommaSeparator(tonsCo2Reduced);
 
     //CO2 reduction as percent of California emmissions
@@ -80,7 +81,7 @@ ghi.addEventListener('load',  function() {
 
 
    //Gallons of water saved per year based on stats here for nuclear energy being 600 gallons per mWh http://cleantechnica.com/2014/03/22/solar-power-water-use-infographic/
-    var waterSavedPerKwh = (600/1000) * (laElectricityDailyAvg * daysInYear);
+    var waterSavedPerKwh = (600/1000) * laElectricityYearlyAvg  ;
     document.getElementById('waterSaved').innerHTML = thousandCommaSeparator(Math.round(waterSavedPerKwh));
 
     //Cost of solar panels needed to make the city sustainable
