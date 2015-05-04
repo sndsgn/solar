@@ -13,7 +13,7 @@ An API driven exploration into answering whether Los Angeles could generate its 
 - The tax credits or discounts on panels for buying them in volume
 - The additional costs beyond the solar panels to install solar systems
 
-v0.1
+v0.0
 ---
 
 [MIT License](http://opensource.org/licenses/MIT)
