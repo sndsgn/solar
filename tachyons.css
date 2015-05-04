@@ -839,6 +839,10 @@ input[type="password"]:after,
   border-color: #eee;
 }
 
+.b--lightest-gray {
+  border-color: #F8F8F8;
+}
+
 .b--near-white {
   border-color: #f4f4f4;
 }

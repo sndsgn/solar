@@ -1,11 +1,15 @@
 To Do:
 
+v0.1
 * Clean up code
+  - add city specific information to an object for each city
+  - look for abstraction and higher order function opportunities
+  - 
+* Visualize aspects of Data starting with the city map percentage covered
+* Break down data into current profile, to be sustainable on solar and the benefits
+* Implement/Understand CORS and obtain all data from external APIs
 * Double check calculations in Google Sheet
 * Hide API Keys
-* Visualize aspects of Data starting with the city map percentage covered
 * Improve UI
-* Implement/Understand CORS and obtain all data from external APIs
 * Set up site so that any city can be loaded
 * Build in error and exception code if city does not exist in data set
-* 

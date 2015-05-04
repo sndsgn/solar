@@ -1,7 +1,6 @@
 <!DOCTYPE html> 
 
 <html lang="en"> 
-
   <head>
     <meta charset="utf-8">
     <title>
@@ -22,159 +21,164 @@
     <script>
     </script> 
     <header>
-      <h1 class="center tc ttu plm prm pts pbs dark-yellow f1">Solar</h1>
-      <h2 class="center tc mega-ns f1 ttu dark-blue bt bb b--silver mtn mbn plm prm pts pbs">Los Angeles</h2>
-      <h3 class="center tc f3-ns f4 ttu black mbn plm prm pts pbs">Could <span class="dark-blue">Los Angeles </span>generate its energy from <span class="darkest-yellow">solar</span>?</h3>
+      <h1 class="center tc ttu plm prm pts pbs darkest-yellow f1">Solar</h1>
+      <h2 class="center tc mega-ns f1 ttu darkest-blue bt bb b--silver mtn mbn plm prm pts pbs">Los Angeles</h2>
+      <h3 class="center tc f3 ttu black mbn plm prm ptm">Could <span class="darkest-blue">Los Angeles </span>generate its energy from <span class="darkest-yellow">solar</span>?</h3>
       <meta name="description" content="Could Los Angeles generate its energy from solar panels?" >
     </header>
-    <main class="ptl">
-    <section class="plm prm pts pbs">
-      <dl class="">
-        <dt id="" class="f2 tc b">Total <span class="darkest-yellow">Solar Panels</span> to Be <span class="teal f2">Sustainable</span> </dt>
-        <dd class='mln f2 pts tc'><span id="numSolarPanelsNeeded"></span></dd>
-      </dl>
-    </section>
+    <main class="ptl cf">
+      <section class="pll prl pts pbs w-33-ns tc fl">
+        <h1 class="f2 ttu darkest-blue">City Profile</h1>
+        <section class="pts pbs" tabindex="1">
+          <dl class="">
+            <dt id="" class="f3 tc b">Electricity Consumed Per Day<a target="_blank" href="http://en.wikipedia.org/wiki/Kilowatt_hour" class="link" title="Definition of a kilowatt hour"> (kWh)</a></dt>
+            <dd class='mln f3 pts tc'><span id="laElectricityDailyUsage"></span></dd>
+          </dl>
+        </section>
 
-    <div class="bt w-50 b--light-gray center"></div>
+        <div class="bt w-50 b--lightest-gray center"></div>
 
-    <section class="plm prm pts pbs">
-      <dl class="">
-        <dt id="" class="f2 tc b">Years Till Return On Investment</dt>
-        <dd class="mln f2 pts tc"><span id="roiDays"></span></dd>
-      </dl>
-    </section>
+        <section class="pts pbs" tabindex="2">
+          <dl class="">
+            <dt id="" class="f3 tc b">Electricity Cost Per Day</dt>
+            <dd class="mln f3 pts tc"><span id="cityElectricityCostDaily"></span></dd>
+          </dl>
+        </section>
 
-    <div class="bt w-50 b--light-gray center"></div>
+        <div class="bt w-50 b--lightest-gray center"></div>
 
-    <section class="plm prm pts pbs">
-      <dl class="">
-        <dt id="" class="f2 tc b">Twenty Year Net Savings</dt>
-        <dd class="mln f2 pts tc"><span id="twentyNetYearSavings"></span></dd>
-      </dl>
-    </section>
+        <section class="pts pbs" tabindex="3">
+          <dl class="">
+            <dt id="" class="f3 tc b">Usable Sun a Day<a target="_blank" href="https://developer.nrel.gov/docs/solar/solar-resource-v1/#request-fields" class="link" title="Definition of GHI or Global Horizontal Irradiance"> (GHI)</a></dt>
+            <dd class='mln f3 pts tc'><span id="ghIrradiance"></span> kWh</dd>
+          </dl>
+        </section>
 
-    <div class="bt w-50 b--light-gray center"></div>
-    
-    <section class="plm prm pts pbs">
-      <dl class="">
-        <dt id="" class="f2 tc b">City Area (%) To Be Covered with <span class="darkest-yellow">Solar Panels</span></dt>
-        <dd class="mln f2 pts tc"><span id="laAreaPercentForSolar"></span></dd>
-      </dl>
-    </section>
+        <div class="bt w-50 b--lightest-gray center"></div>
 
-    <div class="bt w-50 b--light-gray center"></div>
+        <section class="pts pbs" tabindex="4">
+          <dl class="">
+            <dt id="" class="f3 tc b">Los Angeles City Population</dt>
+            <dd class="mln f3 pts tc"><span id="cityPopulation"></span></dd>
+          </dl>
+        </section>
 
-    <section class="plm prm pts pbs">
-      <dl class="">
-        <dt id="" class="f2 tc b">Electricity Consumed Per Day<a target="_blank" href="http://en.wikipedia.org/wiki/Kilowatt_hour" class="link" title="Definition of a kilowatt hour"> (kWh)</a></dt>
-        <dd class='mln f2 pts tc'><span id="laElectricityDailyUsage"></span></dd>
-      </dl>
-    </section>
+        <div class="bt w-50 b--lightest-gray center"></div>
 
-    <div class="bt w-50 b--light-gray center"></div>
+        <section class="pts pbs" tabindex="5">
+          <dl class="">
+            <dt id="" class="f3 tc b">Los Angeles Land Area (Sqft)</dt>
+            <dd class='mln f3 pts tc'><span id="laSqft"></span></dd>
+          </dl>
+        </section>
+      </section>
 
-    <section class="plm prm pts pbs">
-      <dl class="">
-        <dt id="" class="f2 tc b">Electricity Cost Per Day</dt>
-        <dd class="mln f2 pts tc"><span id="cityElectricityCostDaily"></span></dd>
-      </dl>
-    </section>
+      <section class="pll prl pts pbs w-33-ns tc fl bl-ns br-ns b--lightest-gray">
+        <h1 class="f2 ttu darkest-yellow">To Go Solar</h1>
+        <section class="pts pbs" tabindex="6">
+          <dl class="">
+            <dt id="" class="f3 tc b">Total <span class="darkest-yellow">Solar Panels</span> to cover electricity</dt>
+            <dd class='mln f3 pts tc'><span id="numSolarPanelsNeeded"></span></dd>
+          </dl>
+        </section>
 
-    <div class="bt w-50 b--light-gray center"></div>
+        <div class="bt w-50 b--lightest-gray center"></div>
 
-    <section class="plm prm pts pbs">
-      <dl class="">
-        <dt id="" class="f2 tc b">Usable Sun a Day<a target="_blank" href="https://developer.nrel.gov/docs/solar/solar-resource-v1/#request-fields" class="link" title="Definition of GHI or Global Horizontal Irradiance"> (GHI)</a></dt>
-        <dd class='mln f2 pts tc'><span id="ghIrradiance"></span> kWh</dd>
-      </dl>
-    </section>
+        <section class="pts pbs" tabindex="7">
+          <dl class="">
+            <dt id="" class="f3 tc b">City Area (%) for <span class="darkest-yellow">Solar Panels</span></dt>
+            <dd class="mln f3 pts tc"><span id="laAreaPercentForSolar"></span></dd>
+          </dl>
+        </section>
 
-    <div class="bt w-50 b--light-gray center"></div>
+        <div class="bt w-50 b--lightest-gray center"></div>
 
-    <section class="plm prm pts pbs">
-      <dl class="">
-        <dt id="" class="f2 tc b">Solar Panels Area (Sqft)</dt>
-        <dd class='mln f2 pts tc'><span id="solarPanelsSqft"></span></dd>
-      </dl>
-    </section>
+        <section class="pts pbs" tabindex="8">
+          <dl class="">
+            <dt id="" class="f3 tc b">Solar Panels Area (Sqft)</dt>
+            <dd class='mln f3 pts tc'><span id="solarPanelsSqft"></span></dd>
+          </dl>
+        </section>
 
-    <div class="bt w-50 b--light-gray center"></div>
+        <div class="bt w-50 b--lightest-gray center"></div>
 
-    <section class="plm prm pts pbs">
-      <dl class="">
-        <dt id="" class="f2 tc b">Los Angeles Land Area (Sqft)</dt>
-        <dd class='mln f2 pts tc'><span id="laSqft"></span></dd>
-      </dl>
-    </section>
+        <section class="pts pbs" tabindex="9">
+          <dl class="">
+            <dt id="" class="f3 tc b">Total Cost of <span class="darkest-yellow">Solar Panels</span></dt>
+            <dd class="mln f3 pts tc"><span id="solarPanelTotalCost"></span></dd>
+          </dl>
+        </section>
 
-    <div class="bt w-50 b--light-gray center"></div>
+        <div class="bt w-50 b--lightest-gray center"></div>
 
-    <section class="plm prm pts pbs">
-      <dl class="">
-        <dt id="" class="f2 tc b">CO2 Tons Reduced (Per kWh per year)</dt>
-        <dd class='mln f2 pts tc'><span id="co2Reduced"></span></dd>
-      </dl>
-    </section>
+        <section class="pts pbs" tabindex="10">
+          <dl class="">
+            <dt id="" class="f3 tc b">Average Contribution Per Resident</dt>
+            <dd class='mln f3 pts tc'><span id="perResidentContribution"></span></dd>
+          </dl>
+        </section>
+      </section>
+      
+      <section class="pll prl pts pbs w-33-ns tc fl">
+        <h1 class="f2 ttu darkest-green">Benefits & ROI</h1>
+        <section class="pts pbs" tabindex="11">
+          <dl class="">
+            <dt id="" class="f3 tc b">Years Till Return On Investment</dt>
+            <dd class="mln f3 pts tc"><span id="roiDays"></span></dd>
+          </dl>
+        </section>
 
-    <div class="bt w-50 b--light-gray center"></div>
+        <div class="bt w-50 b--lightest-gray center"></div>
 
-    <section class="plm prm pts pbs">
-      <dl class="">
-        <dt id="" class="f2 tc b">CO2 Tons Reduction as Percent (%) of California Emmissions</dt>
-        <dd class='mln f2 pts tc'><span id="percentCo2California"></span></dd>
-      </dl>
-    </section>
+        <section class="pts pbs" tabindex="12">
+          <dl class="">
+            <dt id="" class="f3 tc b">Twenty Year Net Savings</dt>
+            <dd class="mln f3 pts tc"><span id="twentyNetYearSavings"></span></dd>
+          </dl>
+        </section>
 
-    <div class="bt w-50 b--light-gray center"></div>
+        <div class="bt w-50 b--lightest-gray center"></div>
 
-    <section class="plm prm pts pbs">
-      <dl class="">
-        <dt id="" class="f2 tc b">Water Saved (Gallons per year)</dt>
-        <dd class='mln f2 pts tc'><span id="waterSaved"></span></dd>
-      </dl>
-    </section>
+        <section class="pts pbs" tabindex="13">
+          <dl class="">
+            <dt id="" class="f3 tc b">CO2 Tons Reduced (Per kWh per year)</dt>
+            <dd class='mln f3 pts tc'><span id="co2Reduced"></span></dd>
+          </dl>
+        </section>
 
-    <div class="bt w-50 b--light-gray center"></div>
+        <div class="bt w-50 b--lightest-gray center"></div>
 
-    <section class="plm prm pts pbs">
-      <dl class="">
-        <dt id="" class="f2 tc b">Total Cost of <span class="darkest-yellow">Solar Panels</span></dt>
-        <dd class="mln f2 pts tc"><span id="solarPanelTotalCost"></span></dd>
-      </dl>
-    </section>
+        <section class="pts pbs" tabindex="14">
+          <dl class="">
+            <dt id="" class="f3 tc b">Percent of California CO2 Reduced</dt>
+            <dd class='mln f3 pts tc'><span id="percentCo2California"></span></dd>
+          </dl>
+        </section>
 
-    <div class="bt w-50 b--light-gray center"></div>
+        <div class="bt w-50 b--lightest-gray center"></div>
 
-    <section class="plm prm pts pbs">
-      <dl class="">
-        <dt id="" class="f2 tc b">Los Angeles City Population</dt>
-        <dd class="mln f2 pts tc"><span id="cityPopulation"></span></dd>
-      </dl>
-    </section>
-
-    <div class="bt w-50 b--light-gray center"></div>
-
-    <section class="plm prm pts pbs">
-      <dl class="">
-        <dt id="" class="f2 tc b">Contribution Per City Resident To Purchase Solar Panels</dt>
-        <dd class='mln f2 pts tc'><span id="perResidentContribution"></span></dd>
-      </dl>
-    </section>
+        <section class="pts pbs" tabindex="15">
+          <dl class="">
+            <dt id="" class="f3 tc b">Water Saved (Gallons per year)</dt>
+            <dd class='mln f3 pts tc'><span id="waterSaved"></span></dd>
+          </dl>
+        </section>
+      </section>
     </main>
 
-    <footer class="pbl ptl cf">
+    <footer class="pbl ptl cf tc center">
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-      <div class="center tc pbl plm">
+      <div class="center testc pbl plm">
         <a href="https://twitter.com/share"
           class="twitter-share-button pl3"
-          data-text="Solar: API Infographic - How many solar panels would make Los Angeles sustainable?"
+          data-text="Solar: API Infographic - Could Los Angeles generate itS energy from solar?"
           data-via="sndsgn" data-size="large">Tweet</a>
       </div>
-      <div class="center tc">
+      <div class="ptm">
         <ul class="list pln di">
-          <li class="di pll prl"><a href="https://twitter.com/sndsgns" class="link">@sndsgns</a></li> 
-          <li class="di pll prl"> <a href="https://github.com/sndsgn" class="link">github</a></li>
-          <li class="di pll prl"><a href="http://instagram.com/sndsgn" class="link">instagram</a></li>
+          <li class="di plm prm"><a href="https://twitter.com/sndsgns" class="link">@sndsgns</a></li> 
+          <li class="di plm prm"> <a href="https://github.com/sndsgn" class="link">github</a></li>
+          <li class="di plm prm"><a href="http://instagram.com/sndsgn" class="link">instagram</a></li>
         </ul>
       </div>
     </footer>
