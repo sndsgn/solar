@@ -6132,6 +6132,11 @@ img {
 }
 
 @media screen and (min-width: 42em) {
+
+  .darkest-blue-ns {
+    color: #002f86;
+}
+
   .pan-ns {
     padding: 0;
   }
@@ -7091,6 +7096,12 @@ img {
 }
 
 @media screen and (min-width: 64em) {
+
+  .darkest-blue-l {
+    color: #002f86;
+}
+
+
   .pan-l {
     padding: 0;
   }
