@@ -3,28 +3,31 @@ function thousandCommaSeparator(num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+//Create XHR Request
+var createXHR = function(method, url) {
+  var xhr  = new XMLHttpRequest();
+  xhr.open(method, url, true);
+  xhr.send();
+    return xhr; 
+};
+
 //XHR Request for GHI Data for Los Angeles
 //Source: http://developer.nrel.gov/docs/solar/solar-resource-v1/
 //Data: The values returned are kWh/m2/day (kilowatt hours per square meter per day). Annual Average Daily. 
 //Data source: http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=DPx3KUp9krBKyHIiDqd1axWqETim9pYy3BwT6f5z&address=Los    +Angeles ******************REMOVE KEY********
-var ghi = new XMLHttpRequest();
-ghi.open('GET', 'data/kwh-ghi/2009_1998avgGHILA.json', true);
-ghi.send();
 
-//Event listener for ghi XHR Request load and then proceeds with XHR request for LA Electricity Requirements.
-//Help from http://eloquentjavascript.net/17_http.html
-//Data source: https://data.lacity.org/api/views/rijp-9dwj/rows.json
-ghi.addEventListener('load',  function() {
-  var laElectricityAnnual = new XMLHttpRequest();
-  laElectricityAnnual.open('GET', 'data/kwh-consumption/2015_2003lacityelectricitydata.json', true);
-  laElectricityAnnual.send();
+  var ghi = createXHR('GET', 'data/kwh-ghi/2009_1998avgGHILA.json');
+  ghi.addEventListener('load', function() {
+    var ghiObj = JSON.parse(ghi.responseText);
+
+  //Event listener for ghi XHR Request load and then proceeds with XHR request for LA Electricity Requirements.
+  //Help from http://eloquentjavascript.net/17_http.html
+  //Data source: https://data.lacity.org/api/views/rijp-9dwj/rows.json
+  var laElectricityAnnual = createXHR('GET', 'data/kwh-consumption/2015_2003lacityelectricitydata.json');
   laElectricityAnnual.addEventListener('load', function() {
-    //ghIrradiance JSON object
-    
-    var ghIrradianceObj = JSON.parse(ghi.responseText);
 
     //Annual daily average of GHI kWh
-    var ghIrradianceDailyAvg = ghIrradianceObj['outputs']['avg_ghi']['annual'];
+    var ghIrradianceDailyAvg = ghiObj['outputs']['avg_ghi']['annual'];
     document.getElementById('ghIrradiance').innerHTML = ghIrradianceDailyAvg;
 
     //Days in a year
@@ -80,7 +83,7 @@ ghi.addEventListener('load',  function() {
     document.getElementById('percentCo2California').innerHTML = percentFormat(percentCo2OfCalifornia);  
 
 
-   //Gallons of water saved per year based on stats here for nuclear energy being 600 gallons per mWh http://cleantechnica.com/2014/03/22/solar-power-water-use-infographic/
+    //Gallons of water saved per year based on stats here for nuclear energy being 600 gallons per mWh http://cleantechnica.com/2014/03/22/solar-power-water-use-infographic/
     var waterSavedPerKwh = (600/1000) * laElectricityYearlyAvg  ;
     document.getElementById('waterSaved').innerHTML = thousandCommaSeparator(Math.round(waterSavedPerKwh));
 
@@ -90,29 +93,29 @@ ghi.addEventListener('load',  function() {
     document.getElementById('solarPanelTotalCost').innerHTML = '$' + thousandCommaSeparator(solarPanelsCost);
 
     //Los Angeles average cost per kWh http://www.bls.gov/regions/west/news-release/averageenergyprices_losangeles.htm ***API DOES EXIST - CHECK IT OUT***
-      var laElectricityCost = 0.215; 
-      var laElectricityCostDaily = (laElectricityCost * laElectricityDailyAvg);
-      document.getElementById('cityElectricityCostDaily').innerHTML = '$' + thousandCommaSeparator(laElectricityCostDaily);
+    var laElectricityCost = 0.215; 
+    var laElectricityCostDaily = (laElectricityCost * laElectricityDailyAvg);
+    document.getElementById('cityElectricityCostDaily').innerHTML = '$' + thousandCommaSeparator(laElectricityCostDaily);
 
-      //Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx
-      //****pow function turning 1.0004 into 0.00039999999999995595 ****
-      var solarDepreciationAvg =  function(years) {
-          var i;
-          var accumulator = 0;
-          for(i = 1; i <= years; i +=1) {
-            accumulator += ((Math.pow((1 + 0.004), i)) - 1);
-          }
-          return accumulator / years;
-      };
+    //Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx
+    //****pow function turning 1.0004 into 0.00039999999999995595 ****
+    var solarDepreciationAvg =  function(years) {
+      var i;
+      var accumulator = 0;
+      for(i = 1; i <= years; i +=1) {
+        accumulator += ((Math.pow((1 + 0.004), i)) - 1);
+      }
+      return accumulator / years;
+    };
 
-      //Return on investment - Number of years before you pay off Solar Panels
-      var roiYearsPayOffSolar = (solarPanelsCost / (laElectricityCostDaily * daysInYear) / (1 - solarDepreciationAvg(1)));
-      document.getElementById('roiDays').innerHTML = (roiYearsPayOffSolar).toFixed(2);
+    //Return on investment - Number of years before you pay off Solar Panels
+    var roiYearsPayOffSolar = (solarPanelsCost / (laElectricityCostDaily * daysInYear) / (1 - solarDepreciationAvg(1)));
+    document.getElementById('roiDays').innerHTML = (roiYearsPayOffSolar).toFixed(2);
 
-      //Twenty year savings including degradation of panel output
-      //Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx
-      var twentyNetYearSavings = ((((laElectricityCostDaily * 20) * (1 - solarDepreciationAvg(20))) * daysInYear) - solarPanelsCost);
-      document.getElementById('twentyNetYearSavings').innerHTML = '$' + thousandCommaSeparator(Math.round(twentyNetYearSavings));
+    //Twenty year savings including degradation of panel output
+    //Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx
+    var twentyNetYearSavings = ((((laElectricityCostDaily * 20) * (1 - solarDepreciationAvg(20))) * daysInYear) - solarPanelsCost);
+    document.getElementById('twentyNetYearSavings').innerHTML = '$' + thousandCommaSeparator(Math.round(twentyNetYearSavings));
 
     //Population of City
     var laCityPop = 3884300;

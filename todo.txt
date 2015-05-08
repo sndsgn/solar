@@ -5,6 +5,7 @@ v0.1
   - add city specific information to an object for each city
   - look for abstraction and higher order function opportunities
   - 
+* Make each stat clickable that then shows the calculation logic and source. Clicked again the stat reappears.
 * Visualize aspects of Data starting with the city map percentage covered
 * Break down data into current profile, to be sustainable on solar and the benefits
 * Implement/Understand CORS and obtain all data from external APIs
@@ -13,3 +14,11 @@ v0.1
 * Improve UI
 * Set up site so that any city can be loaded
 * Build in error and exception code if city does not exist in data set
+
+Potential Fully Support API Site:
+ - GHI - NREL
+ - Electricity Usage per State or County or Zip
+ - Area square miles - Wikipedia CORS
+ - Population - Wikipedia CORS
+ - Percent of State County CO2 emmissions -
+
