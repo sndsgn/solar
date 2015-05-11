@@ -16,7 +16,9 @@ v0.1
 * Build in error and exception code if city does not exist in data set
 
 Potential Fully Support API Site:
- - GHI - NREL
+ - GHI - NREL http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=DPx3KUp9krBKyHIiDqd1axWqETim9pYy3BwT6f5z&address=Los+Angeles
+     * Address based on Google's Geo Coding: City, Zip or Latitude / Longitude
+
  - Electricity Usage per State or County or Zip
  - Area square miles - Wikipedia CORS
  - Population - Wikipedia CORS
