@@ -11,12 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="tachyons.css">
     <script src="Chart.js"></script>
-    <style>
-       {
-        border: 1px solid gold;
-      }
-
-    </style>
   </head>
   <body>
     <script>
@@ -27,14 +21,17 @@
       <h3 class="center tc f3 ttu black mbn plm prm ptm">Could <span class="darkest-blue">Los Angeles </span>generate its energy from <span class="darkest-yellow">solar</span>?</h3>
       <meta name="description" content="Could Los Angeles generate its energy from solar panels?" >
     </header>
-    <main class="ptl cf">
+    <main class="cf ptl">
       <section>
         <div id="canvas-holder" class="mw8 center tc">
           <canvas id="chart-area"></canvas>
+          <div id="percentCAKwh" style="bottom: 21.5rem; left: 11.5rem" class="pos-rel mega b center dib darkest-blue"></div>
+          <div style="bottom: 18.5rem; right: 1.5rem" class="b pos-rel f3 center dib">of California's</div>
+          <div style="bottom: 16rem; right: 13rem" class="b pos-rel f3 center dib">Electricity Usage</div>
         </div>
       </section>
-      <section class="pll prl pts pbs w-33-ns tc fl">
-        <h1 class="f2 ttu darkest-blue">City Profile</h1>
+      <section class="pll prl pbm w-33-ns tc fl">
+        <h1 class="mtn f2 ttu darkest-blue">City Profile</h1>
         <section class="pts pbs" tabindex="1">
           <dl class="">
             <dt id="" class="f3 tc b">Electricity Consumed Per Day<a target="_blank" href="http://en.wikipedia.org/wiki/Kilowatt_hour" class="link" title="Definition of a kilowatt hour"> (kWh)</a></dt>
@@ -79,8 +76,8 @@
         </section>
       </section>
 
-      <section class="pll prl pts pbs w-33-ns tc fl bl-ns br-ns b--lightest-gray">
-        <h1 class="f2 ttu darkest-yellow">To Go Solar</h1>
+      <section class="pll prl pbm w-33-ns tc fl bl-ns br-ns b--lightest-gray">
+        <h1 class="mtn f2 ttu darkest-yellow">To Go Solar</h1>
         <section class="pts pbs" tabindex="6">
           <dl class="">
             <dt id="" class="f3 tc b">Total <span class="darkest-yellow">Solar Panels</span> to cover electricity</dt>
@@ -125,8 +122,8 @@
         </section>
       </section>
       
-      <section class="pll prl pts pbs w-33-ns tc fl">
-        <h1 class="f2 ttu darkest-green">Benefits & ROI</h1>
+      <section class="pll prl pbm w-33-ns tc fl">
+        <h1 class="mtn f2 ttu darkest-green">Benefits & ROI</h1>
         <section class="pts pbs" tabindex="11">
           <dl class="">
             <dt id="" class="f3 tc b">Years Till Return On Investment</dt>

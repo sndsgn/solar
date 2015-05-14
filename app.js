@@ -80,13 +80,19 @@ var doughnutData = [];
     var ghIrradianceDailyAvg = ghiObj['outputs']['avg_ghi']['annual'];
     document.getElementById('ghIrradiance').innerHTML = ghIrradianceDailyAvg;
 
+    //Percent format function
+    var percentFormat = function(num) {
+      return ((num * 100).toFixed(2)) + '%';
+    };
+
     //Days in a year
     var daysInYear = 365.24;
 
     //Los Angeles Electricity for 2012-2013 broken to into daily use
     var laElectricityObj = JSON.parse(laElectricityAnnual.responseText);
     var laElectricityYearlyAvg = Math.round((laElectricityObj.meta.view.columns[15].cachedContents.sum * 1000000));
-    console.log(laElectricityYearlyAvg/caKwhAnnualUse);  
+    var percentCAKwhCalc = (laElectricityYearlyAvg/caKwhAnnualUse);  
+    document.getElementById('percentCAKwh').innerHTML = percentFormat(percentCAKwhCalc);
     var laElectricityDailyAvg = Math.round(laElectricityYearlyAvg / daysInYear);
     document.getElementById('laElectricityDailyUsage').innerHTML = thousandCommaSeparator(laElectricityDailyAvg);
 
@@ -148,11 +154,6 @@ var doughnutData = [];
     //Sqare miles to square feet conversion source: http://www.selectscg.com/customers/conversions/ConversionFormula.aspx (27889333.33333)
     var laAreaSqft = Math.round(469*27889333.33333);
     document.getElementById('laSqft').innerHTML = thousandCommaSeparator(laAreaSqft);
-
-    //Percent format function
-    var percentFormat = function(num) {
-      return ((num * 100).toFixed(2)) + '%';
-    };
 
     //Percent of city area covered in solar panels
     var laAreaPercentForSolar = percentFormat(laAreaForSolarSqftNum / laAreaSqft); 
@@ -226,24 +227,25 @@ var doughnutData = [];
  * https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
  */
 
-
 window.onload = function(){
   var ctx = document.getElementById("chart-area").getContext("2d");
-  var doughnutLabel = function() {
-    ctx.fillStyle = 'black';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(doughnutData[0].value + "%", ctx.width / 2 - 20, ctx.width / 2, 200);
-  };
   window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
     responsive : true,
-    onAnimationComplete: doughnutLabel,
     animationSteps: 120,
     animateScale: true,
     percentageInnerCutout : 70,
+    segmentShowStroke : true,
+    segmentStrokeColor : "#fff",
+    segmentStrokeWidth : 2,
+    animation : true,
+    animationEasing : "easeOutBounce",
+    animateRotate : true,
+    animateScale : false,
     labelFontFamily : "Arial",
     labelFontStyle : "normal",
-    labelFontSize : 24,
-    labelFontColor : "#666"});
+    labelFontSize : 84,
+    labelFontColor : "#666" 
+});
 };
 
 

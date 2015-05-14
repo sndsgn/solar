@@ -2500,18 +2500,22 @@
 		}
 	});
   
-  Chart.types.Doughnut.extend({
-    name: "DoughnutAlt",
-    initialize: function(doughnutData) {
-                  console.log('My Line chart extension');
-                  Chart.types.Doughnut.prototype.initialize.apply(this, arguments);
-                }
-  });
-
+  /* Doughnut Extend for center label code. Able to get the text to show but only at the bottom
 	Chart.types.Doughnut.extend({
 		name : "Pie",
-		defaults : helpers.merge(defaultConfig,{percentageInnerCutout : 0})
+    draw: function() {
+            Chart.types.Doughnut.prototype.draw.apply(this, arguments);
+            this.chart.ctx.fillStyle = '#002f86';
+            this.chart.ctx.textBaseline = 'middle';
+            this.chart.ctx.fillText(this.segments[0].value + "%", this.chart.width / 2 - 20, this.chart.width / 2, 200);
+            //Added the below label styling based on code within this file
+            this.chart.ctx.textAlign = "center";
+            this.chart.ctx.fillStyle = this.titleTextColor;
+            this.chart.ctx.font = this.titleFont;
+          },
+		defaults : helpers.merge(defaultConfig,{percentageInnerCutout : 70}),
 	});
+  */
 
 }).call(this);
 (function(){
