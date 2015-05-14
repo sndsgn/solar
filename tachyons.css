@@ -29,6 +29,10 @@ summary {
  * Correct `inline-block` display not defined in IE 8/9.
  */
 
+canvas {
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
+
 audio,
 canvas,
 video {

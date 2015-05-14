@@ -10,6 +10,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="tachyons.css">
+    <script src="Chart.js"></script>
     <style>
        {
         border: 1px solid gold;
@@ -27,6 +28,11 @@
       <meta name="description" content="Could Los Angeles generate its energy from solar panels?" >
     </header>
     <main class="ptl cf">
+      <section>
+        <div id="canvas-holder" class="mw8 center tc">
+          <canvas id="chart-area"></canvas>
+        </div>
+      </section>
       <section class="pll prl pts pbs w-33-ns tc fl">
         <h1 class="f2 ttu darkest-blue">City Profile</h1>
         <section class="pts pbs" tabindex="1">

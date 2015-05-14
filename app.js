@@ -11,10 +11,60 @@ var createXHR = function(method, url) {
     return xhr; 
 };
 
+//California Electricity Consumption 2014
+//
+var caKwhAnnualUse = 259538038*1000;
+
+//A function that applies a function to a specific range of items in a list
+var forRange = function(list, func, start, stop) {
+  var i;
+  var key;
+  if(start === undefined) {
+    start = 0;
+  }
+  if(stop === undefined) {
+    stop = (list.length - 1);
+  }
+  if(Array.isArray(list)) {
+    for(i = start; i <= stop; i += 1) {
+      func(list[i]);
+    }
+  } else {
+    var keySet = Object.keys(list);
+    for(key = start; key <= keySet.length; key += 1) {
+      func(list[keySet[key]]);
+    }
+  } 
+};
+
+//Reduce function
+var reduce = function(list, func, start) {
+  var current = start;
+    var i;
+    var key;
+  if(Array.isArray(list)) {
+    for(i = start; i < list.length; i += 1) {
+      current = func(current, list[i]);
+    }
+  } else {
+    for(key in list) {
+      current = func(current, list[key]);
+    }
+  } 
+  return current;
+};
+
 //XHR Request for GHI Data for Los Angeles
 //Source: http://developer.nrel.gov/docs/solar/solar-resource-v1/
 //Data: The values returned are kWh/m2/day (kilowatt hours per square meter per day). Annual Average Daily. 
 //Data source: http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=DPx3KUp9krBKyHIiDqd1axWqETim9pYy3BwT6f5z&address=Los    +Angeles ******************REMOVE KEY********
+
+//****TEMPORARY EXTERNAL OBJECT FOR LA kWh DATA
+var consoleLAObj = {};
+
+
+//Creation of doughnut chart data array
+var doughnutData = [];
 
   var ghi = createXHR('GET', 'data/kwh-ghi/2009_1998avgGHILA.json');
   ghi.addEventListener('load', function() {
@@ -36,9 +86,49 @@ var createXHR = function(method, url) {
     //Los Angeles Electricity for 2012-2013 broken to into daily use
     var laElectricityObj = JSON.parse(laElectricityAnnual.responseText);
     var laElectricityYearlyAvg = Math.round((laElectricityObj.meta.view.columns[15].cachedContents.sum * 1000000));
+    console.log(laElectricityYearlyAvg/caKwhAnnualUse);  
     var laElectricityDailyAvg = Math.round(laElectricityYearlyAvg / daysInYear);
     document.getElementById('laElectricityDailyUsage').innerHTML = thousandCommaSeparator(laElectricityDailyAvg);
 
+    //Populate the chart with the different zip code's energy daily consumption
+    var laDataArr = laElectricityObj.data;
+    var laDataKwhExtractObj = function(arr) {
+      var zipKwhObj = {};
+      var i;
+      var j;
+      for(i = 0; i <= 124; i += 1) {
+        var subObj = JSON.parse(arr[i][16][0]); 
+        var subObjZip = subObj["zip"];
+        zipKwhObj[subObjZip] = {};
+        var startYear = 2003;
+        var sum = 0;
+        for(j = 8; j <= 15; j += 1, startYear += 1) {
+          zipKwhObj[subObjZip][startYear] = ((arr[i][j])*1000000);
+          sum += Number(arr[i][j]);
+        }
+        var keyCount = (Object.keys(zipKwhObj[subObjZip])).length;
+        zipKwhObj[subObjZip]["average"] = ((Math.round(sum / keyCount)*1000000));  
+      }
+      consoleLAObj = zipKwhObj; 
+        return zipKwhObj;
+
+    };
+    var laZipKwhObjClean = laDataKwhExtractObj(laDataArr);
+    //Function that populate doughnutData with average zip kWh consumption
+    var pushDataDoughnut = function(obj, chartArr) {
+      var objKey;
+      for(objKey in obj) {
+        var formattedKwh = ((obj[objKey]["average"])/1000000000); 
+        chartArr.push({
+          value: formattedKwh,
+          color: "hsla(51,100%,38%,0.64)",
+          highlight: "hsla(18,100%,47%,0.94)",
+          label: 'Zip / Postal Code - ' + objKey + ' Annual Electricity Consumption (GWh)'  
+        });
+      }
+    };
+    pushDataDoughnut(laZipKwhObjClean, doughnutData);
+     
     //Solar Panels Needed based on Grape Solar Panel 390 watt
     //Grape Solar Panel 390w 15.21% Efficiency http://solar-panels-review.toptenreviews.com/grape-solar-390w-review.html?cmpid=ttr-ls
     //71.1% efficiency for fixed position solar panels: http://www.solarpaneltilt.com/
@@ -124,10 +214,36 @@ var createXHR = function(method, url) {
     //Contribution per Citizen
     var perResidentContribution = (solarPanelsCost / laCityPop);
     document.getElementById('perResidentContribution').innerHTML = '$' + thousandCommaSeparator(perResidentContribution.toFixed(2)); 
-
-
   });
 });
 
+/*!
+ * Chart.js
+ * http://chartjs.org/
+ *
+ * Copyright 2013 Nick Downie
+ * Released under the MIT license
+ * https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
+ */
+
+
+window.onload = function(){
+  var ctx = document.getElementById("chart-area").getContext("2d");
+  var doughnutLabel = function() {
+    ctx.fillStyle = 'black';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(doughnutData[0].value + "%", ctx.width / 2 - 20, ctx.width / 2, 200);
+  };
+  window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
+    responsive : true,
+    onAnimationComplete: doughnutLabel,
+    animationSteps: 120,
+    animateScale: true,
+    percentageInnerCutout : 70,
+    labelFontFamily : "Arial",
+    labelFontStyle : "normal",
+    labelFontSize : 24,
+    labelFontColor : "#666"});
+};
 
 
