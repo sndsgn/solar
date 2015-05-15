@@ -231,7 +231,7 @@ window.onload = function(){
   var ctx = document.getElementById("chart-area").getContext("2d");
   window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
     responsive : true,
-    animationSteps: 120,
+    animationSteps: 90,
     animateScale: true,
     percentageInnerCutout : 70,
     segmentShowStroke : true,

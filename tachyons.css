@@ -3607,6 +3607,14 @@ img {
   bottom: 4rem;
 }
 
+.bottom-doughnut-percent {
+  bottom: 5.5rem;
+}
+
+.left-doughnut-percent {
+  left: 5.5rem;
+}
+
 /* Top Percentage based scale */
 
 .top-auto {
@@ -3697,6 +3705,30 @@ img {
 
   .right-4-ns {
     right: 4rem;
+  }
+
+  .left-doughnut-percent-ns {
+    left: 11.5rem;
+  }
+
+  .bottom-doughnut-percent-ns {
+    bottom: 21.5rem;
+  }
+
+  .bottom-doughnut-label1-ns {
+    bottom: 18.5rem;
+  }
+
+  .bottom-doughnut-label2-ns {
+    bottom: 16rem;
+  }
+
+  .right-doughnut-label1-ns {
+    right: 1.5rem;
+  }
+
+  .right-doughnut-label2-ns {
+    right: 13rem;
   }
 
   .bottom-4-ns {
