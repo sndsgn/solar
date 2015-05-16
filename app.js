@@ -100,40 +100,79 @@ var doughnutData = [];
     var laDataArr = laElectricityObj.data;
     var laDataKwhExtractObj = function(arr) {
       var zipKwhObj = {};
-      var i;
-      var j;
-      for(i = 0; i <= 124; i += 1) {
-        var subObj = JSON.parse(arr[i][16][0]); 
+      forRange(arr, function(item) {
+        var subObj = JSON.parse(item[16][0]); 
         var subObjZip = subObj["zip"];
         zipKwhObj[subObjZip] = {};
         var startYear = 2003;
         var sum = 0;
-        for(j = 8; j <= 15; j += 1, startYear += 1) {
-          zipKwhObj[subObjZip][startYear] = ((arr[i][j])*1000000);
-          sum += Number(arr[i][j]);
-        }
+        forRange(item, function(element) {
+          zipKwhObj[subObjZip][startYear] = (element*1000000);
+          startYear += 1;
+          sum += Number(element);
+        }, 8, 15);
         var keyCount = (Object.keys(zipKwhObj[subObjZip])).length;
         zipKwhObj[subObjZip]["average"] = ((Math.round(sum / keyCount)*1000000));  
-      }
+      }, 0, 124);
       consoleLAObj = zipKwhObj; 
         return zipKwhObj;
 
+      //Original Chart Populate Function
+      /*var zipKwhObj = {};
+        var i;
+        var j;
+        for(i = 0; i <= 124; i += 1) {
+          var subObj = JSON.parse(arr[i][16][0]); 
+          var subObjZip = subObj["zip"];
+          zipKwhObj[subObjZip] = {};
+          var startYear = 2003;
+          var sum = 0;
+          for(j = 8; j <= 15; j += 1, startYear += 1) {
+            zipKwhObj[subObjZip][startYear] = ((arr[i][j])*1000000);
+            sum += Number(arr[i][j]);
+          }
+          var keyCount = (Object.keys(zipKwhObj[subObjZip])).length;
+          zipKwhObj[subObjZip]["average"] = ((Math.round(sum / keyCount)*1000000));  
+        }
+        consoleLAObj = zipKwhObj; 
+        return zipKwhObj;
+      */
     };
+
+    //Assign cleaned LA kWh data to new object
     var laZipKwhObjClean = laDataKwhExtractObj(laDataArr);
+
+    //Sorts cleaned data by average kWh instead of zip
+    //Referenced: http://stackoverflow.com/questions/1069666/sorting-javascript-object-by-property-value
+    var sortKwhAvg = function(obj) {
+          var i;
+          var sortedArr = [];
+          for(i in obj) {
+              sortedArr.push([i,obj[i]['average']]);
+          }
+          sortedArr.sort(function(a,b) { return b[1] - a[1];});
+          return sortedArr;
+    };
+    var sorted = sortKwhAvg(laZipKwhObjClean);
+
+
     //Function that populate doughnutData with average zip kWh consumption
-    var pushDataDoughnut = function(obj, chartArr) {
-      var objKey;
-      for(objKey in obj) {
-        var formattedKwh = ((obj[objKey]["average"])/1000000000); 
+
+    var pushDataDoughnut = function(arr, chartArr) {
+      var arrInd;
+      var i = 35;
+      for(arrInd in arr) {
+        var formattedKwh = ((arr[arrInd][1])/1000000000); 
+        var i = i + 0.25;
         chartArr.push({
           value: formattedKwh,
-          color: "hsla(51,100%,38%,0.64)",
-          highlight: "hsla(18,100%,47%,0.94)",
-          label: 'Zip / Postal Code - ' + objKey + ' Annual Electricity Consumption (GWh)'  
+          color: 'hsla(' + (i) + ',100%,38%,0.94)',
+          highlight: "hsla(219,100%,26%,0.97)",
+          label: 'Zip / Postal Code - ' + arr[arrInd][0] + ' Annual Electricity Consumption (GWh)'  
         });
       }
     };
-    pushDataDoughnut(laZipKwhObjClean, doughnutData);
+    pushDataDoughnut(sorted, doughnutData);
      
     //Solar Panels Needed based on Grape Solar Panel 390 watt
     //Grape Solar Panel 390w 15.21% Efficiency http://solar-panels-review.toptenreviews.com/grape-solar-390w-review.html?cmpid=ttr-ls

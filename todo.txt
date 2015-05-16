@@ -1,10 +1,17 @@
 To Do:
 
 v0.1
+
 * Clean up code
-  - add city specific information to an object for each city
   - look for abstraction and higher order function opportunities
-  - 
+  - implement AirBNB JS style guidelines 
+  - make the doughnut represent kWh user per capita
+  - order the per capita use by largest to smallest
+  - add gradient that goes from orange to red for the smallest to the largest kWh usage
+  - fix landscape view on iPhone
+  - add map only of zip codes in LA with shading for the amount of area covered in solar panels with a percentage number in the shading
+  - add city specific information to an object for each city
+  -  
 * Make each stat clickable that then shows the calculation logic and source. Clicked again the stat reappears.
 * Visualize aspects of Data starting with the city map percentage covered
 * Break down data into current profile, to be sustainable on solar and the benefits
