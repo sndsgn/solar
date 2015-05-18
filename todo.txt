@@ -1,24 +1,23 @@
 To Do:
 
-v0.1
+v0.11
 
 * Clean up code
-  - look for abstraction and higher order function opportunities
   - implement AirBNB JS style guidelines 
-  - make the doughnut represent kWh user per capita
-  - order the per capita use by largest to smallest
-  - add gradient that goes from orange to red for the smallest to the largest kWh usage
+  - look for abstraction and higher order function opportunities
+  - remove variable definitions from the global namespace
   - fix landscape view on iPhone
+  - fix view on iPhone 6+
   - add map only of zip codes in LA with shading for the amount of area covered in solar panels with a percentage number in the shading
   - add city specific information to an object for each city
   -  
+
+Future Version:
 * Make each stat clickable that then shows the calculation logic and source. Clicked again the stat reappears.
 * Visualize aspects of Data starting with the city map percentage covered
-* Break down data into current profile, to be sustainable on solar and the benefits
 * Implement/Understand CORS and obtain all data from external APIs
 * Double check calculations in Google Sheet
 * Hide API Keys
-* Improve UI
 * Set up site so that any city can be loaded
 * Build in error and exception code if city does not exist in data set
 
@@ -26,8 +25,9 @@ Potential Fully Support API Site:
  - GHI - NREL http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=DPx3KUp9krBKyHIiDqd1axWqETim9pYy3BwT6f5z&address=Los+Angeles
      * Address based on Google's Geo Coding: City, Zip or Latitude / Longitude
 
- - Electricity Usage per State or County or Zip
- - Area square miles - Wikipedia CORS
- - Population - Wikipedia CORS
- - Percent of State County CO2 emmissions -
+ - Average price per kWh per state, county or zip
+ - Electricity Usage per state, county or zip
+ - Area square miles                                 - Wikipedia CORS
+ - Population                                        - Wikipedia CORS
+ - Percent of State County CO2 emmissions 
 
