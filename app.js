@@ -1,10 +1,13 @@
+//Using AirBNB JS Style Guidlines
+//Source: https://github.com/airbnb/javascript
+"use strict";
 //Source: http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 function thousandCommaSeparator(num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 //Create XHR Request
-var createXHR = function(method, url) {
+function createXHR(method, url) {
   var xhr  = new XMLHttpRequest();
   xhr.open(method, url, true);
   xhr.send();
@@ -16,9 +19,10 @@ var createXHR = function(method, url) {
 var caKwhAnnualUse = 259538038*1000;
 
 //A function that applies a function to a specific range of items in a list
-var forRange = function(list, func, start, stop) {
+function forRange(list, func, start, stop) {
   var i;
   var key;
+  var keySet = Object.keys(list);
   if(start === undefined) {
     start = 0;
   }
@@ -30,18 +34,17 @@ var forRange = function(list, func, start, stop) {
       func(list[i]);
     }
   } else {
-    var keySet = Object.keys(list);
     for(key = start; key <= keySet.length; key += 1) {
       func(list[keySet[key]]);
     }
   } 
-};
+}
 
 //Reduce function
-var reduce = function(list, func, start) {
-  var current = start;
-    var i;
-    var key;
+function reduce(list, func, initial) {
+  var current = initial;
+  var i;
+  var key;
   if(Array.isArray(list)) {
     for(i = start; i < list.length; i += 1) {
       current = func(current, list[i]);
@@ -57,11 +60,7 @@ var reduce = function(list, func, start) {
 //XHR Request for GHI Data for Los Angeles
 //Source: http://developer.nrel.gov/docs/solar/solar-resource-v1/
 //Data: The values returned are kWh/m2/day (kilowatt hours per square meter per day). Annual Average Daily. 
-//Data source: http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=DPx3KUp9krBKyHIiDqd1axWqETim9pYy3BwT6f5z&address=Los    +Angeles ******************REMOVE KEY********
-
-//****TEMPORARY EXTERNAL OBJECT FOR LA kWh DATA
-var consoleLAObj = {};
-
+//Data source: http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=KEY???=Los+Angeles 
 
 //Creation of doughnut chart data array
 var doughnutData = [];
@@ -81,7 +80,7 @@ var doughnutData = [];
     document.getElementById('ghIrradiance').innerHTML = ghIrradianceDailyAvg;
 
     //Percent format function
-    var percentFormat = function(num) {
+    function percentFormat(num) {
       return ((num * 100).toFixed(2)) + '%';
     };
 
@@ -98,42 +97,79 @@ var doughnutData = [];
 
     //Populate the chart with the different zip code's energy daily consumption
     var laDataArr = laElectricityObj.data;
-    var laDataKwhExtractObj = function(arr) {
+    function laDataKwhExtractObj(arr) {
       var zipKwhObj = {};
-      var i;
-      var j;
-      for(i = 0; i <= 124; i += 1) {
+      forRange(arr, function(item) {
+        var subObj = JSON.parse(item[16][0]); 
+        var subObjZip = subObj["zip"];
+        zipKwhObj[subObjZip] = {};
+        var startYear = 2003;
+        var sum = 0;
+        forRange(item, function(element) {
+          zipKwhObj[subObjZip][startYear] = (element*1000000);
+          startYear += 1;
+          sum += Number(element);
+        }, 8, 15);
+        var keyCount = (Object.keys(zipKwhObj[subObjZip])).length;
+        zipKwhObj[subObjZip]["average"] = ((Math.round(sum / keyCount)*1000000));  
+      }, 0, 124);
+      return zipKwhObj;
+
+      //Original Chart Populate Function
+      /*var zipKwhObj = {};
+        var i;
+        var j;
+        for(i = 0; i <= 124; i += 1) {
         var subObj = JSON.parse(arr[i][16][0]); 
         var subObjZip = subObj["zip"];
         zipKwhObj[subObjZip] = {};
         var startYear = 2003;
         var sum = 0;
         for(j = 8; j <= 15; j += 1, startYear += 1) {
-          zipKwhObj[subObjZip][startYear] = ((arr[i][j])*1000000);
-          sum += Number(arr[i][j]);
+        zipKwhObj[subObjZip][startYear] = ((arr[i][j])*1000000);
+        sum += Number(arr[i][j]);
         }
         var keyCount = (Object.keys(zipKwhObj[subObjZip])).length;
         zipKwhObj[subObjZip]["average"] = ((Math.round(sum / keyCount)*1000000));  
-      }
-      consoleLAObj = zipKwhObj; 
+        }
         return zipKwhObj;
-
+        */
     };
+
+    //Assign cleaned LA kWh data to new object
     var laZipKwhObjClean = laDataKwhExtractObj(laDataArr);
+
+    //Sorts cleaned data by average kWh instead of zip
+    //Referenced: http://stackoverflow.com/questions/1069666/sorting-javascript-object-by-property-value
+    function sortKwhAvg(obj) {
+      var i;
+      var sortedArr = [];
+      for(i in obj) {
+        sortedArr.push([i,obj[i]['average']]);
+      }
+      sortedArr.sort(function(a,b) { return b[1] - a[1];});
+      return sortedArr;
+    };
+    var sorted = sortKwhAvg(laZipKwhObjClean);
+
+
     //Function that populate doughnutData with average zip kWh consumption
-    var pushDataDoughnut = function(obj, chartArr) {
-      var objKey;
-      for(objKey in obj) {
-        var formattedKwh = ((obj[objKey]["average"])/1000000000); 
+
+    function pushDataDoughnut(arr, chartArr) {
+      var arrInd;
+      var i = 35;
+      for(arrInd in arr) {
+        var formattedKwh = ((arr[arrInd][1])/1000000000); 
+        i = i + 0.25;
         chartArr.push({
           value: formattedKwh,
-          color: "hsla(51,100%,38%,0.64)",
-          highlight: "hsla(18,100%,47%,0.94)",
-          label: 'Zip / Postal Code - ' + objKey + ' Annual Electricity Consumption (GWh)'  
+          color: 'hsla(' + (i) + ',100%,38%,0.94)',
+          highlight: "hsla(219,100%,26%,0.97)",
+          label: 'Zip / Postal Code - ' + arr[arrInd][0] + ' Annual Electricity Consumption (GWh)'  
         });
       }
     };
-    pushDataDoughnut(laZipKwhObjClean, doughnutData);
+    pushDataDoughnut(sorted, doughnutData);
      
     //Solar Panels Needed based on Grape Solar Panel 390 watt
     //Grape Solar Panel 390w 15.21% Efficiency http://solar-panels-review.toptenreviews.com/grape-solar-390w-review.html?cmpid=ttr-ls
@@ -190,7 +226,7 @@ var doughnutData = [];
 
     //Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx
     //****pow function turning 1.0004 into 0.00039999999999995595 ****
-    var solarDepreciationAvg =  function(years) {
+    function solarDepreciationAvg(years) {
       var i;
       var accumulator = 0;
       for(i = 1; i <= years; i +=1) {
