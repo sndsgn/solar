@@ -3,6 +3,7 @@ To Do:
 v0.11
 
 * Clean up code
+  - Add stat/image of the gallons of water every California resident would receive based on the water savings of LA going solar
   - implement AirBNB JS style guidelines 
   - look for abstraction and higher order function opportunities
   - remove variable definitions from the global namespace

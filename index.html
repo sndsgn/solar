@@ -4,13 +4,13 @@
   <head>
     <meta charset="utf-8">
     <title>
-      
+    Solar - Could Los Angeles generate its energy from solar panels?
     </title>
     <meta name="author" content="">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="tachyons.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
   </head>
   <body>
     <script>
@@ -35,7 +35,7 @@
         <section class="pts pbs" tabindex="1">
           <dl class="">
             <dt id="" class="f3 tc b">Electricity Consumed Per Day<a target="_blank" href="http://en.wikipedia.org/wiki/Kilowatt_hour" class="link" title="Definition of a kilowatt hour"> (kWh)</a></dt>
-            <dd class='mln f3 pts tc'><span id="laElectricityDailyUsage"></span></dd>
+            <dd class='mln f3 pts tc'><span id="laKwhDailyUsage"></span></dd>
           </dl>
         </section>
 
@@ -44,7 +44,7 @@
         <section class="pts pbs" tabindex="2">
           <dl class="">
             <dt id="" class="f3 tc b">Electricity Cost Per Day</dt>
-            <dd class="mln f3 pts tc"><span id="cityElectricityCostDaily"></span></dd>
+            <dd class="mln f3 pts tc"><span id="cityKwhCostDaily"></span></dd>
           </dl>
         </section>
 
@@ -117,11 +117,11 @@
         <section class="pts pbs" tabindex="10">
           <dl class="">
             <dt id="" class="f3 tc b">Avg. Contribution Per Resident</dt>
-            <dd class='mln f3 pts tc'><span id="perResidentContribution"></span></dd>
+            <dd class='mln f3 pts tc'><span id="perResContrib"></span></dd>
           </dl>
         </section>
       </section>
-      
+
       <section class="pll prl pbm w-33-ns tc fl">
         <h1 class="mtn f2 ttu darkest-green">Benefits & ROI</h1>
         <section class="pts pbs" tabindex="11">
@@ -186,6 +186,6 @@
       </div>
     </footer>
     <script async src="app.js"></script>
-    
+
   </body>
 </html>
