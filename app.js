@@ -1,6 +1,3 @@
-//Using AirBNB JS Style Guidlines
-//Source: https://github.com/airbnb/javascript
-"use strict";
 //Source: http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 function thousandCommaSeparator(num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
