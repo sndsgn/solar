@@ -9,7 +9,7 @@ function numCommaSep(num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-//Function that creates an XHR Request
+//Function declaration that creates an XHR Request
 function createXHR(method, url) {
   var xhr  = new XMLHttpRequest();
   xhr.open(method, url, true);
@@ -17,7 +17,7 @@ function createXHR(method, url) {
   return xhr; 
 };
 
-//Percent format function
+//Percent format function declaration
 function percentFormat(num) {
   return ((num * 100).toFixed(2)) + '%';
 };
@@ -25,7 +25,7 @@ function percentFormat(num) {
 //Days in a year
 var daysInYear = 365.24;
 
-//Function that applies a function to a specific range of items in a list(object or array).
+//Function declaration that applies a function to a specific range of items in a list(object or array).
 //The last two parameters allow you to specify a start and stop index within the list.
 //If no start or stop are specified, the function will iterate over the entire list.
 //This is similar to forEach or _.each functions with an option to specify the start and stop index
@@ -50,10 +50,10 @@ function forRange(list, func, start, stop) {
   } 
 }
 
-//Creation of doughnut chart data array
+//Doughnut chart data array declaration and assigment
 var doughnutData = [];
 
-//Creation XHR Request for GHI Data for Los Angeles
+//Initiates XHR Request for GHI Data for Los Angeles
 //Data: The values returned are kWh/m2/day (kilowatt hours per square meter per day). Annual Average Daily 
 //Data source: http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=KEY=Los+Angeles 
 var ghi = createXHR('GET', 'data/kwh-ghi/2009_1998avgGHILA.json');
@@ -63,26 +63,26 @@ ghi.addEventListener('load', function() {
   //Create JSON formatted object from XHR request for LA's average GHI
   var ghiObj = JSON.parse(ghi.responseText);
 
-  //Creation of XHR request for Los Angeles kWh usage data by zip code and year
+  //Initiates XHR request for Los Angeles kWh usage data by zip code and year
   //Data source: https://data.lacity.org/api/views/rijp-9dwj/rows.json
   var laKwhAnnual = createXHR('GET', 'data/kwh-consumption/2015_2003lacityelectricitydata.json');
   laKwhAnnual.addEventListener('load', function() {
 
-    //Assigns annual daily average of GHI kWh for Los Angeles to variable
+    //Declaration of and assignment to variable of annual daily average of GHI kWh for Los Angeles to variable
     var ghiDailyAvg = ghiObj['outputs']['avg_ghi']['annual'];
     document.getElementById('ghIrradiance').innerHTML = ghiDailyAvg;
 
     //Los Angeles electricity use for 2003-2010 (monthly average for the year) in million kWh
-    //Creates JSON object from LA kWh use XHR request
+    //Declaration and assignment of JSON object from LA kWh use XHR request
     var laKwhObj = JSON.parse(laKwhAnnual.responseText);
 
-    //Assigns variable with the yearly average kWh use value
+    //Declaration of and assignment to variable with the yearly average kWh use value
     var laKwhYearlyAvg = Math.round((laKwhObj.meta.view.columns[15].cachedContents.sum * 1000000));
-    //Initiates and assigns variable with daily Los Angeles kWh avearge use
+    //Declaration of and assignment to variable with daily Los Angeles kWh avearge use
     var laKwhDailyAvg = Math.round(laKwhYearlyAvg / daysInYear);
     document.getElementById('laKwhDailyUsage').innerHTML = numCommaSep(laKwhDailyAvg);
 
-    //Cleans source JSON object with LA kWh use data, initiates and assigns new object with each zip having its kWh usage organized by year and adds a property 'average' of all years for that zip.
+    //Cleans source JSON object with LA kWh use data, declares and assigns new object with each zip having its kWh usage organized by year and adds a property 'average' of all years for that zip.
     var laDataArr = laKwhObj.data;
     function laDataKwhExtractObj(arr) {
       var zipKwhObj = {};
@@ -103,10 +103,10 @@ ghi.addEventListener('load', function() {
       return zipKwhObj;
     };
 
-    //Assigns cleaned LA kWh data with kWh usage per year per zip code to a new object
+    //Declares and assigns cleaned LA kWh data with kWh usage per year per zip code to a new object
     var laZipKwhObjClean = laDataKwhExtractObj(laDataArr);
 
-    //Creates an array with the cleaned object data sortedLaKwhArr in descending order by average kWh instead of by zip 
+    //Function declaration that returns an array with the cleaned object data sortedLaKwhArr in descending order by average kWh instead of by zip 
     //Referenced: http://stackoverflow.com/questions/1069666/sorting-javascript-object-by-property-value
 
     function sortKwhAvg(obj) {
@@ -121,7 +121,7 @@ ghi.addEventListener('load', function() {
 
     var sortedLaKwhArr = sortKwhAvg(laZipKwhObjClean);
 
-    //Function that populates doughnutData with average zip kWh consumption
+    //Function declaration that populates doughnutData with the zip and  average zip kWh consumption
     function pushDataDoughnut(arr, chartArr) {
       var i = 35;
       forRange(arr, function(item) {
@@ -201,7 +201,7 @@ ghi.addEventListener('load', function() {
     var laKwhCostDaily = (laKwhCost * laKwhDailyAvg);
     document.getElementById('cityKwhCostDaily').innerHTML = '$' + numCommaSep(laKwhCostDaily);
 
-    //Function that calculates depreciation of solar panels over the number years provided
+    //Function declaration that returns the depreciation of solar panels over the number years provided
     //Data Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx
     function solarDepreciationAvg(years) {
       var i;
@@ -249,6 +249,7 @@ ghi.addEventListener('load', function() {
  */
 
 //Doughnut chart with all Los Angeles zip code kWh usage
+//The below code generates the doughnut chart visualization using the Chart.js library
 window.onload = function(){
   var ctx = document.getElementById('chart-area').getContext('2d');
   window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
