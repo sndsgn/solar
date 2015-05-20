@@ -1,17 +1,34 @@
-//Source: http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-function thousandCommaSep(num) {
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+//SOLAR
+//@sndsgns
+//Could Los Angeles generate its energy needs from solar panels?
+//Extracting external data and calculating whether LA can run off of solar energy
+
+//Function which formats numbers with thousand, milion, billion, etc. comma separators 
+//Reference: http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+function numCommaSep(num) {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-//Create XHR Request
+//Function that creates an XHR Request
 function createXHR(method, url) {
   var xhr  = new XMLHttpRequest();
   xhr.open(method, url, true);
   xhr.send();
-    return xhr; 
+  return xhr; 
 };
 
-//A function that applies a function to a specific range of items in a list
+//Percent format function
+function percentFormat(num) {
+  return ((num * 100).toFixed(2)) + '%';
+};
+
+//Days in a year
+var daysInYear = 365.24;
+
+//Function that applies a function to a specific range of items in a list(object or array).
+//The last two parameters allow you to specify a start and stop index within the list.
+//If no start or stop are specified, the function will iterate over the entire list.
+//This is similar to forEach or _.each functions with an option to specify the start and stop index
 function forRange(list, func, start, stop) {
   var i;
   var key;
@@ -27,72 +44,51 @@ function forRange(list, func, start, stop) {
       func(list[i]);
     }
   } else {
-    for(key = start; key <= keySet.length; key += 1) {
+    for(key = start; key < keySet.length; key += 1) {
       func(list[keySet[key]]);
     }
   } 
 }
 
-//Reduce function
-function reduce(list, func, initial) {
-  var current = initial;
-  var i;
-  var key;
-  if(Array.isArray(list)) {
-    for(i = start; i < list.length; i += 1) {
-      current = func(current, list[i]);
-    }
-  } else {
-    for(key in list) {
-      current = func(current, list[key]);
-    }
-  } 
-  return current;
-};
-
-//XHR Request for GHI Data for Los Angeles
-//Source: http://developer.nrel.gov/docs/solar/solar-resource-v1/
-//Data: The values returned are kWh/m2/day (kilowatt hours per square meter per day). Annual Average Daily. 
-//Data source: http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=KEY???=Los+Angeles 
-
 //Creation of doughnut chart data array
 var doughnutData = [];
 
-  var ghi = createXHR('GET', 'data/kwh-ghi/2009_1998avgGHILA.json');
-  ghi.addEventListener('load', function() {
-    var ghiObj = JSON.parse(ghi.responseText);
+//Creation XHR Request for GHI Data for Los Angeles
+//Data: The values returned are kWh/m2/day (kilowatt hours per square meter per day). Annual Average Daily 
+//Data source: http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=KEY=Los+Angeles 
+var ghi = createXHR('GET', 'data/kwh-ghi/2009_1998avgGHILA.json');
 
-  //Event listener for ghi XHR Request load and then proceeds with XHR request for LA Electricity Requirements.
-  //Help from http://eloquentjavascript.net/17_http.html
+//Event listener for ghi XHR request load and then proceeds with XHR request for LA kWh use data
+ghi.addEventListener('load', function() {
+  //Create JSON formatted object from XHR request for LA's average GHI
+  var ghiObj = JSON.parse(ghi.responseText);
+
+  //Creation of XHR request for Los Angeles kWh usage data by zip code and year
   //Data source: https://data.lacity.org/api/views/rijp-9dwj/rows.json
   var laKwhAnnual = createXHR('GET', 'data/kwh-consumption/2015_2003lacityelectricitydata.json');
   laKwhAnnual.addEventListener('load', function() {
 
-    //Annual daily average of GHI kWh
-    var ghIrradianceDailyAvg = ghiObj['outputs']['avg_ghi']['annual'];
-    document.getElementById('ghIrradiance').innerHTML = ghIrradianceDailyAvg;
+    //Assigns annual daily average of GHI kWh for Los Angeles to variable
+    var ghiDailyAvg = ghiObj['outputs']['avg_ghi']['annual'];
+    document.getElementById('ghIrradiance').innerHTML = ghiDailyAvg;
 
-    //Percent format function
-    function percentFormat(num) {
-      return ((num * 100).toFixed(2)) + '%';
-    };
-
-    //Days in a year
-    var daysInYear = 365.24;
-
-    //Los Angeles Electricity for 2012-2013 broken to into daily use
+    //Los Angeles electricity use for 2003-2010 (monthly average for the year) in million kWh
+    //Creates JSON object from LA kWh use XHR request
     var laKwhObj = JSON.parse(laKwhAnnual.responseText);
-    var laKwhYearlyAvg = Math.round((laKwhObj.meta.view.columns[15].cachedContents.sum * 1000000));
-    var laKwhDailyAvg = Math.round(laKwhYearlyAvg / daysInYear);
-    document.getElementById('laKwhDailyUsage').innerHTML = thousandCommaSep(laKwhDailyAvg);
 
-    //Populate the chart with the different zip code's energy daily consumption
+    //Assigns variable with the yearly average kWh use value
+    var laKwhYearlyAvg = Math.round((laKwhObj.meta.view.columns[15].cachedContents.sum * 1000000));
+    //Initiates and assigns variable with daily Los Angeles kWh avearge use
+    var laKwhDailyAvg = Math.round(laKwhYearlyAvg / daysInYear);
+    document.getElementById('laKwhDailyUsage').innerHTML = numCommaSep(laKwhDailyAvg);
+
+    //Cleans source JSON object with LA kWh use data, initiates and assigns new object with each zip having its kWh usage organized by year and adds a property 'average' of all years for that zip.
     var laDataArr = laKwhObj.data;
     function laDataKwhExtractObj(arr) {
       var zipKwhObj = {};
       forRange(arr, function(item) {
         var subObj = JSON.parse(item[16][0]); 
-        var subObjZip = subObj["zip"];
+        var subObjZip = subObj['zip'];
         zipKwhObj[subObjZip] = {};
         var startYear = 2003;
         var sum = 0;
@@ -102,100 +98,111 @@ var doughnutData = [];
           sum += Number(element);
         }, 8, 15);
         var keyCount = (Object.keys(zipKwhObj[subObjZip])).length;
-        zipKwhObj[subObjZip]["average"] = ((Math.round(sum / keyCount)*1000000));  
+        zipKwhObj[subObjZip]['average'] = ((Math.round(sum / keyCount)*1000000));  
       }, 0, 124);
       return zipKwhObj;
     };
 
-    //Assign cleaned LA kWh data to new object
+    //Assigns cleaned LA kWh data with kWh usage per year per zip code to a new object
     var laZipKwhObjClean = laDataKwhExtractObj(laDataArr);
 
-    //Sorts cleaned object data by average kWh instead of zip and returns sorted array
+    //Creates an array with the cleaned object data sortedLaKwhArr in descending order by average kWh instead of by zip 
     //Referenced: http://stackoverflow.com/questions/1069666/sorting-javascript-object-by-property-value
+
     function sortKwhAvg(obj) {
-      var i;
       var sortedArr = [];
-      for(i in obj) {
-        sortedArr.push([i,obj[i]['average']]);
+      var item;
+      for(item in obj) {
+        sortedArr.push([item, obj[item]['average']]);
       }
       sortedArr.sort(function(a,b) { return b[1] - a[1];});
       return sortedArr;
     };
-    var sorted = sortKwhAvg(laZipKwhObjClean);
 
-    //Function that populate doughnutData with average zip kWh consumption
+    var sortedLaKwhArr = sortKwhAvg(laZipKwhObjClean);
+
+    //Function that populates doughnutData with average zip kWh consumption
     function pushDataDoughnut(arr, chartArr) {
-      var arrInd;
       var i = 35;
-      for(arrInd in arr) {
-        var formattedKwh = ((arr[arrInd][1])/1000000000); 
+      forRange(arr, function(item) {
+        var formattedKwh = ((item[1])/1000000000); 
         i = i + 0.25;
         chartArr.push({
           value: formattedKwh,
           color: 'hsla(' + (i) + ',100%,38%,0.94)',
-          highlight: "hsla(219,100%,26%,0.97)",
-          label: 'Zip / Postal Code - ' + arr[arrInd][0] + ' Annual Electricity Consumption (GWh)'  
+          highlight: 'hsla(219,100%,26%,0.97)',
+          label: 'Zip / Postal Code - ' + item[0] + ' Annual Electricity Consumption (GWh)'  
         });
-      }
+      });
     };
-    pushDataDoughnut(sorted, doughnutData);
-     
+    pushDataDoughnut(sortedLaKwhArr, doughnutData);
+
     //Solar Panels Needed based on Grape Solar Panel 390 watt
     //Grape Solar Panel (GSP) 390w 15.21% Efficiency http://solar-panels-review.toptenreviews.com/grape-solar-390w-review.html?cmpid=ttr-ls
+    var gspKwhOutput = (390 / 1000);
     //71.1% efficiency for fixed position solar panels: http://www.solarpaneltilt.com/
     var solarPanelEfficiency = 0.711;
-    var gspKwhOutput = 0.390;
-    var numSolarPanels= (laKwhDailyAvg / (ghIrradianceDailyAvg * gspKwhOutput * solarPanelEfficiency)).toFixed(0); 
-    document.getElementById('numSolarPanelsNeeded').innerHTML = thousandCommaSep(numSolarPanels); 
+    var numSolarPanels= Math.round(laKwhDailyAvg / (ghiDailyAvg * gspKwhOutput * solarPanelEfficiency)); 
+    document.getElementById('numSolarPanelsNeeded').innerHTML = numCommaSep(numSolarPanels); 
 
     //Area needed for solar panels in sqft based on Grape Solar Panel(GSP) 390 watt
+    //GSP dimensions in inches
     var gspLengthIn = 77.2;
     var gspWidthIn = 51.5;
+    //GSP price in USD ($)
     var gspPrice = 585;
+    //GSP dimensions converted to sqft
     var gspSqft = (gspLengthIn/12) * (gspWidthIn/12); 
+    //Number of solar panels needs multiplied by the GSP area to determine total area needed for solar panels in LA city
     var laAreaForSolarSqftNum = (gspSqft * numSolarPanels); 
-    document.getElementById('solarPanelsSqft').innerHTML = thousandCommaSep((laAreaForSolarSqftNum).toFixed(0)); 
+    document.getElementById('solarPanelsSqft').innerHTML = numCommaSep((laAreaForSolarSqftNum).toFixed(0)); 
 
-    //Los Angeles City sqft source wikipedia. This only includes the land area of the city according to Wikipedia. 
-    //http://en.wikipedia.org/wiki/Los_Angeles (469 land square miles)
+    //Cost of solar panels needed to make the city sustainable
+    //Source for price per Grape Solar 390 watt panel: http://www.freecleansolar.com/390W-solar-panel-Grape-GS-S-390-TS-mono-p/gs-s-390-ts.htm?gclid=Cj0KEQjwyIyqBRD4janGs5e67IsBEiQAoF8DGtxLzucEC_zw3ED8ARPd3pIyd8wjR5V0w9Cj8bWJBq4aAtwI8P8HAQ
+    var solarPanelsCost = gspPrice * numSolarPanels;
+    document.getElementById('solarPanelTotalCost').innerHTML = '$' + numCommaSep(solarPanelsCost);
+
+    //Los Angeles City area converted to sqft. This only includes the land area of the city according to Wikipedia. 
+    //Data Source: http://en.wikipedia.org/wiki/Los_Angeles (469 land square miles)
     //Sqare miles to square feet conversion source: http://www.selectscg.com/customers/conversions/ConversionFormula.aspx (27889333.33333)
     var laAreaSqft = Math.round(469*27889333.33333);
-    document.getElementById('laSqft').innerHTML = thousandCommaSep(laAreaSqft);
+    document.getElementById('laSqft').innerHTML = numCommaSep(laAreaSqft);
 
     //Percent of city area covered in solar panels
     var laAreaPercentForSolar = percentFormat(laAreaForSolarSqftNum / laAreaSqft); 
     document.getElementById('laAreaPercentForSolar').innerHTML = laAreaPercentForSolar;
 
-    //co2 production reduced per kWh
-    //Source: http://www.eia.gov/tools/faqs/faq.cfm?id=74&t=11
+    //CO2 production reduced per kWh
+    //Data Source: http://www.eia.gov/tools/faqs/faq.cfm?id=74&t=11
     var lbsCo2PerKwh = 2.07;
+    //Conversion of CO2 per lbs to per ton
     var tonsCo2PerKwh = lbsCo2PerKwh / 2000;
-    var tonsCo2Reduced =  ((laKwhYearlyAvg  * tonsCo2PerKwh).toFixed(0));
-    document.getElementById('co2Reduced').innerHTML = thousandCommaSep(tonsCo2Reduced);
+    //Calculation of how much CO2 is reduced from the solar panels use opposed to coal
+    //This does not take into account that a portion of California's energy is from Nuclear, Solar and other means
+    //***REVISE ?? FOR PORTION OF ENERGY PRODUCED FROM COAL???***
+    var tonsCo2Reduced =  Math.round((laKwhYearlyAvg  * tonsCo2PerKwh));
+    document.getElementById('co2Reduced').innerHTML = numCommaSep(tonsCo2Reduced);
 
-    //CO2 reduction as percent of California emmissions
-    //Source: http://www.arb.ca.gov/cc/inventory/data/misc/ghg_inventory_trends_00-12_2014-05-13.pdf
-    //Data from 2012 which since there is a small reduction every year this number is probably higher than today's annual emmissions
+    //CO2 reduction as percent of total California CO2 emmissions
+    //Data Source: http://www.arb.ca.gov/cc/inventory/data/misc/ghg_inventory_trends_00-12_2014-05-13.pdf
+    //CO2 Data from 2012 in millions of tons - since there is a small CO2 reduction every year the number used is probably higher than today's annual emmissions
     var californiaCo2 = 458.7 * 1000000;
     var percentCo2OfCalifornia = tonsCo2Reduced / californiaCo2; 
     document.getElementById('percentCo2California').innerHTML = percentFormat(percentCo2OfCalifornia);  
 
-    //Gallons of water saved per year based on stats here for nuclear energy being 600 gallons per mWh http://cleantechnica.com/2014/03/22/solar-power-water-use-infographic/
-    var waterSavedPerKwh = (600/1000) * laKwhYearlyAvg  ;
-    document.getElementById('waterSaved').innerHTML = thousandCommaSep(Math.round(waterSavedPerKwh));
+    //Gallons of water saved per year based on stats here for nuclear and coal energy being ~600 gallons per MWh http://cleantechnica.com/2014/03/22/solar-power-water-use-infographic/
+    //Conversion and calculation of gallons saved per kWh for Los Angeles
+    //***IS THIS ALL FRESH WATER??? CONFIRM ***//
+    var waterSavedTotal = (600/1000) * laKwhYearlyAvg;
+    document.getElementById('waterSaved').innerHTML = numCommaSep(Math.round(waterSavedTotal));
 
-    //Cost of solar panels needed to make the city sustainable
-    //Source for price per Grape Solar 390 watt panel: http://www.freecleansolar.com/390W-solar-panel-Grape-GS-S-390-TS-mono-p/gs-s-390-ts.htm?gclid=Cj0KEQjwyIyqBRD4janGs5e67IsBEiQAoF8DGtxLzucEC_zw3ED8ARPd3pIyd8wjR5V0w9Cj8bWJBq4aAtwI8P8HAQ
-    var solarPanelsCost = gspPrice * numSolarPanels;
-    document.getElementById('solarPanelTotalCost').innerHTML = '$' + thousandCommaSep(solarPanelsCost);
-
-    //Los Angeles average cost per kWh http://www.bls.gov/regions/west/news-release/averageenergyprices_losangeles.htm ***API DOES EXIST - CHECK IT OUT***
+    //Los Angeles average daily cost for kWh used http://www.bls.gov/regions/west/news-release/averageenergyprices_losangeles.htm ***API DOES EXIST - CHECK IT OUT AND USE IT WHEN MAKING SITE MODULAR FOR ANY CITY, COUNTY OR ZIP***
     var laKwhCost = 0.215; 
     var laKwhCostDaily = (laKwhCost * laKwhDailyAvg);
-    document.getElementById('cityKwhCostDaily').innerHTML = '$' + thousandCommaSep(laKwhCostDaily);
+    document.getElementById('cityKwhCostDaily').innerHTML = '$' + numCommaSep(laKwhCostDaily);
 
-    //Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx
-    //****pow function turning 1.0004 into 0.00039999999999995595 ****
+    //Function that calculates depreciation of solar panels over the number years provided
+    //Data Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx
     function solarDepreciationAvg(years) {
       var i;
       var accumulator = 0;
@@ -210,20 +217,23 @@ var doughnutData = [];
     document.getElementById('roiDays').innerHTML = (roiYearsPayOffSolar).toFixed(2);
 
     //Twenty year savings including degradation of panel output
-    //Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx
+    //Data Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx
     var twentyNetYearSavings = ((((laKwhCostDaily * 20) * (1 - solarDepreciationAvg(20))) * daysInYear) - solarPanelsCost);
-    document.getElementById('twentyNetYearSavings').innerHTML = '$' + thousandCommaSep(Math.round(twentyNetYearSavings));
+    document.getElementById('twentyNetYearSavings').innerHTML = '$' + numCommaSep(Math.round(twentyNetYearSavings));
 
-    //Population of City
-    var laCityPop = 3884300;
-    document.getElementById('cityPopulation').innerHTML = thousandCommaSep(laCityPop);
+    //Population of Los Angeles City
+    //Data Source: http://en.wikipedia.org/wiki/Los_Angeles
+    var laCityPop = 3884307;
+    document.getElementById('cityPopulation').innerHTML = numCommaSep(laCityPop);
 
-    //Contribution per Citizen
+    //Average contribution per LA resident needed to cover the cost of the solar panels
     var perResContrib = (solarPanelsCost / laCityPop);
-    document.getElementById('perResContrib').innerHTML = '$' + thousandCommaSep(perResContrib.toFixed(2)); 
+    document.getElementById('perResContrib').innerHTML = '$' + numCommaSep(perResContrib.toFixed(2)); 
 
     //California Electricity Consumption 2014
+    //Data Source: http://www.eia.gov/electricity/state/
     var caKwhAnnualUse = 259538038*1000;
+    //Los Angeles' Percent of California electricity use
     var percentCAKwhCalc = (laKwhYearlyAvg/caKwhAnnualUse);  
     document.getElementById('percentCAKwh').innerHTML = percentFormat(percentCAKwhCalc);
   });
@@ -238,25 +248,25 @@ var doughnutData = [];
  * https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
  */
 
+//Doughnut chart with all Los Angeles zip code kWh usage
 window.onload = function(){
-  var ctx = document.getElementById("chart-area").getContext("2d");
+  var ctx = document.getElementById('chart-area').getContext('2d');
   window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
     responsive : true,
     animationSteps: 90,
     animateScale: true,
     percentageInnerCutout : 70,
     segmentShowStroke : true,
-    segmentStrokeColor : "#fff",
+    segmentStrokeColor : '#fff',
     segmentStrokeWidth : 2,
     animation : true,
-    animationEasing : "easeOutBounce",
+    animationEasing : 'easeOutBounce',
     animateRotate : true,
     animateScale : false,
-    labelFontFamily : "Arial",
-    labelFontStyle : "normal",
+    labelFontFamily : 'Arial',
+    labelFontStyle : 'normal',
     labelFontSize : 84,
-    labelFontColor : "#666" 
-});
+    labelFontColor : '#666' 
+  });
 };
-
 
