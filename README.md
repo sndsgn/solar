@@ -12,6 +12,7 @@ An API driven exploration into answering whether Los Angeles could generate its 
 ####What this info does not consider:
 - The tax credits or discounts on panels for buying them in volume
 - The additional costs beyond the solar panels to install solar systems
+- The cost of the energy to produce the energy in California used by LA
 
 v0.11
 ---
