@@ -50,8 +50,8 @@ function forRange(list, func, start, stop) {
   } 
 }
 
-//Doughnut chart data array declaration and assigment
-var doughnutData = [];
+//Pie chart data array declaration and assigment
+var pieData = [];
 
 //Initiates XHR Request for GHI Data for Los Angeles
 //Data: The values returned are kWh/m2/day (kilowatt hours per square meter per day). Annual Average Daily 
@@ -121,8 +121,8 @@ ghi.addEventListener('load', function() {
 
     var sortedLaKwhArr = sortKwhAvg(laZipKwhObjClean);
 
-    //Function declaration that populates doughnutData with the zip and  average zip kWh consumption
-    function pushDataDoughnut(arr, chartArr) {
+    //Function declaration that populates pieData with the zip and  average zip kWh consumption
+    function pushDataPie(arr, chartArr) {
       var i = 35;
       forRange(arr, function(item) {
         var formattedKwh = ((item[1])/1000000000); 
@@ -135,7 +135,7 @@ ghi.addEventListener('load', function() {
         });
       });
     };
-    pushDataDoughnut(sortedLaKwhArr, doughnutData);
+    pushDataPie(sortedLaKwhArr, pieData);
 
     //Solar Panels Needed based on Grape Solar Panel 390 watt
     //Grape Solar Panel (GSP) 390w 15.21% Efficiency http://solar-panels-review.toptenreviews.com/grape-solar-390w-review.html?cmpid=ttr-ls
@@ -248,11 +248,11 @@ ghi.addEventListener('load', function() {
  * https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
  */
 
-//Doughnut chart with all Los Angeles zip code kWh usage
-//The below code generates the doughnut chart visualization using the Chart.js library
+//Pie chart with all Los Angeles zip code kWh usage
+//The below code generates the pie chart visualization using the Chart.js library
 window.onload = function(){
   var ctx = document.getElementById('chart-area').getContext('2d');
-  window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {
+  window.myPie = new Chart(ctx).Pie(pieData, {
     responsive : true,
     animationSteps: 90,
     animateScale: true,
