@@ -256,7 +256,7 @@ window.onload = function(){
     responsive : true,
     animationSteps: 90,
     animateScale: true,
-    percentageInnerCutout : 70,
+    percentageInnerCutout : 0,
     segmentShowStroke : true,
     segmentStrokeColor : '#fff',
     segmentStrokeWidth : 2,
