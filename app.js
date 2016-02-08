@@ -57,7 +57,7 @@
   //Data: The values returned are kWh/m2/day (kilowatt hours per square meter per day). Annual Average Daily 
   //Data source: http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=KEY=Los+Angeles 
   var ghi = createXHR('GET', 'data/kwh-ghi/2009_1998avgGHILA.json');
-
+  var laKwhAnnual = createXHR('GET', 'data/kwh-consumption/2015_2003lacityelectricitydata.json');
   //Event listener for ghi XHR request load and then proceeds with XHR request for LA kWh use data
   ghi.addEventListener('load', function() {
     //Create JSON formatted object from XHR request for LA's average GHI
@@ -65,7 +65,6 @@
 
     //Initiates XHR request for Los Angeles kWh usage data by zip code and year
     //Data source: https://data.lacity.org/api/views/rijp-9dwj/rows.json
-    var laKwhAnnual = createXHR('GET', 'data/kwh-consumption/2015_2003lacityelectricitydata.json');
     laKwhAnnual.addEventListener('load', function() {
 
       //Declaration of and assignment to variable of annual daily average of GHI kWh for Los Angeles to variable
