@@ -10,6 +10,7 @@
     <meta name="description" content="Solar - Data Exploration - Could Los Angeles generate its energy from solar panels?">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="tachyons.css">
+    <script src="Chart.min.js" async></script>
   </head>
   <body>
     <header>
@@ -196,8 +197,7 @@
         </ul>
       </div>
     </footer>
-    <script src="Chart.min.js"></script>
-    <script async>
+    <script>
       window.onload = function(){
         var ctx = document.getElementById('chart-area').getContext('2d');
         window.myPie = new Chart(ctx).Pie(pieData, {
