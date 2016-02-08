@@ -235,7 +235,10 @@ ghi.addEventListener('load', function() {
     var caKwhAnnualUse = 259538038*1000;
     //Los Angeles' Percent of California electricity use
     var percentCAKwhCalc = (laKwhYearlyAvg/caKwhAnnualUse);  
-    document.getElementById('percentCAKwh').innerHTML = percentFormat(percentCAKwhCalc);
+//    document.getElementById('percentCAKwh').innerHTML = percentFormat(percentCAKwhCalc);
+
+    //Water savings percent based on daily consumption in 2014 of average daily resident in Los Angeles http://www.latimes.com/local/california/la-me-adv-water-use-compared-20150413-story.html 131 gallons per day per capita
+    var waterSavingsPercent = (waterSavedTotal / (131* laCityPop * 365));
   });
 });
 

@@ -198,7 +198,7 @@
     487,675 487,605.25 
     "
     style="fill:#002f86;stroke:#002f86;stroke-width:3" />
-    <text x="250" y="667" font-family="Verdana" font-size="3.5rem" fill="white">20.45%</text>
+    <text id="waterSavingsPercentText" x="250" y="667" font-family="Verdana" font-size="3.5rem" fill="white">20.45%</text>
   </g>
 </svg>
 
