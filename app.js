@@ -253,24 +253,4 @@ ghi.addEventListener('load', function() {
 
 //Pie chart with all Los Angeles zip code kWh usage
 //The below code generates the pie chart visualization using the Chart.js library
-window.onload = function(){
-  var ctx = document.getElementById('chart-area').getContext('2d');
-  window.myPie = new Chart(ctx).Pie(pieData, {
-    responsive : true,
-    animationSteps: 90,
-    animateScale: true,
-    percentageInnerCutout : 0,
-    segmentShowStroke : true,
-    segmentStrokeColor : '#fff',
-    segmentStrokeWidth : 2,
-    animation : true,
-    animationEasing : 'easeOutBounce',
-    animateRotate : true,
-    animateScale : false,
-    labelFontFamily : 'Arial',
-    labelFontStyle : 'normal',
-    labelFontSize : 84,
-    labelFontColor : '#666' 
-  });
-};
 
