@@ -238,24 +238,6 @@
 
       //Water savings percent based on daily consumption in 2014 of average daily resident in Los Angeles http://www.latimes.com/local/california/la-me-adv-water-use-compared-20150413-story.html 131 gallons per day per capita
       var waterSavingsPercent = (waterSavedTotal / (131* laCityPop * 365));
-        var ctx = document.getElementById('chart-area').getContext('2d');
-        window.myPie = new Chart(ctx).Pie(pieData, {
-          responsive : true,
-          animationSteps: 90,
-          animateScale: true,
-          percentageInnerCutout : 0,
-          segmentShowStroke : true,
-          segmentStrokeColor : '#fff',
-          segmentStrokeWidth : 2,
-          animation : true,
-          animationEasing : 'easeOutBounce',
-          animateRotate : true,
-          animateScale : false,
-          labelFontFamily : 'Arial',
-          labelFontStyle : 'normal',
-          labelFontSize : 84,
-          labelFontColor : '#666' 
-        });
     });
   });
 
