@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="tachyons.css">
     <script src="Chart.min.js" async></script>
+    <script src="app.js" async></script>
   </head>
   <body>
     <header>
@@ -197,7 +198,7 @@
         </ul>
       </div>
     </footer>
-    <script>
+    <script async>
       window.onload = function(){
         var ctx = document.getElementById('chart-area').getContext('2d');
         window.myPie = new Chart(ctx).Pie(pieData, {
@@ -219,6 +220,5 @@
         });
       };
     </script>
-    <script defer src="app.js"></script>
   </body>
 </html>
