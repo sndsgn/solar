@@ -196,7 +196,7 @@
     </footer>
     <script src="Chart.min.js"></script>
     <script src="app.js"></script>
-    <script>
+    <script async>
       window.onload = function(){
         var ctx = document.getElementById('chart-area').getContext('2d');
         window.myPie = new Chart(ctx).Pie(pieData, {
