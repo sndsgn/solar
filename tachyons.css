@@ -2121,6 +2121,18 @@ code {
   max-height: 20rem;
 }
 
+.max-h7 {
+  max-height: 30rem;
+}
+
+.max-w6 {
+  max-width: 20rem;
+}
+
+.max-w8 {
+  max-width: 40rem;
+}
+
 .h-10 {
   height: 10%;
 }
