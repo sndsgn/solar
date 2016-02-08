@@ -19,17 +19,19 @@
       <meta name="description" content="Could Los Angeles generate its energy from solar panels?">
     </header>
     <main class="cf ptl">
+      <section class="mw8 center tc pbl">
+        <div id="canvas-holder" class="">
+          <h1 class="darkest-blue f2">L.A. Zip Codes By Electricity Usage</h1> 
+          <div class="mw-75 center">
+            <canvas id="chart-area" class=""></canvas>
+          </div>
+        </div>
+      </section>
       <section class="mw8 center tc pbl prl pll">
         <div class="darkest-blue f2 b pbm">Los Angeles' Electricity Use as a Percent of California's</div>
-        <figure>
+        <figure class="">
           <img class="max-h6" src="california-outline-and-flag.png"/>
         </figure>
-      </section>
-      <section class="mw8 center tc pbl">
-        <div id="canvas-holder">
-          <h1 class="darkest-blue f2">L.A. Zip Codes By Electricity Usage</h1> 
-          <canvas id="chart-area" class=""></canvas>
-        </div>
       </section>
       <section class="mw8 center tc pbl prl pll">
         <div class="darkest-blue f2 b">L.A.'s Water Needs Saved By Solar Panels</div>
@@ -180,7 +182,7 @@
 
     <footer class="pbl ptl cf tc center">
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-      <div class="center testc pbl plm">
+      <div class="center testc pbl">
         <a href="https://twitter.com/share"
           class="twitter-share-button pl3"
           data-text="Solar - Data Exploration - Could Los Angeles generate its energy needs from solar panels?"
