@@ -2118,7 +2118,7 @@ code {
 }
 
 .max-h6 {
-  height: 20rem;
+  max-height: 20rem;
 }
 
 .h-10 {
