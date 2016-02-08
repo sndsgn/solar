@@ -1,0 +1,22 @@
+{
+  "name": "solar",
+  "version": "0.0.0",
+  "description": "An API driven exploration into answering whether Los Angeles could generate its energy from solar panels. This project is trying to answer questions such as:",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sndsgn/solar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sndsgn/solar/issues"
+  },
+  "homepage": "https://github.com/sndsgn/solar#readme",
+  "dependencies": {
+    "live-reload": "^1.1.0"
+  }
+}

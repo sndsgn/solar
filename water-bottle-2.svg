@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="720px" height="720px" viewBox="0 0 720 720" enable-background="new 0 0 720 720" xml:space="preserve">
+<g>
+  <polygon id="cap" points=
+    "
+    304,60 304,17.5
+    306.5,13.75 309,12.5
+    314,10 404,10
+    409,12.5 411.5,13.75
+    414,17.5 414,60
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="lip" points=
+    "
+    310.5,60 408.5,60
+    408.5,65 310.5,65
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="cap-seal" points=
+    "
+    304,80 304,65
+    414,65 414,80 
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="cap-stop" points=
+    "
+    294,85 294,80
+    424,80 424,85
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="bottle-part-1" points=
+    "
+    310.5,105 310.5,85
+    408.5,85 408.5,105
+    486,185 232,185
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="bottle-part-2" points=
+    "
+    231,185.25 231,215
+    487,215 487,185.25 
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="bottle-part-3" points=
+    "
+    232,215 237,220
+    242,230 242,235
+    237,240 232,245
+    486,245 481,240
+    476,235 476,230
+    481,220 486,215
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="bottle-part-4" points=
+    "
+    231,245.25 231,275
+    487,275 487,245.25 
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="bottle-part-5" points=
+    "
+    232,275 237,280
+    242,290 242,295
+    237,300 232,305
+    486,305 481,300
+    476,295 476,290
+    481,280 486,275
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="bottle-part-6" points=
+    "
+    231,305.25 231,335
+    487,335 487,305.25 
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="bottle-part-7" points=
+    "
+    232,335 237,340
+    242,350 242,355
+    237,360 232,365
+    486,365 481,360
+    476,355 476,350
+    481,340 486,335
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="bottle-part-8" points=
+    "
+    231,365.25 231,395
+    487,395 487,365.25 
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="bottle-part-9" points=
+    "
+    232,395 237,400
+    242,410 242,415
+    237,420 232,425
+    486,425 481,420
+    476,415 476,410
+    481,400 486,395
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="bottle-part-10" points=
+    "
+    231,425.25 231,455
+    487,455 487,425.25 
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="bottle-part-11" points=
+    "
+    232,455 237,460
+    242,470 242,475
+    237,480 232,485
+    486,485 481,480
+    476,475 476,470
+    481,460 486,455
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="bottle-part-12" points=
+    "
+    231,485.25 231,515
+    487,515 487,485.25 
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="bottle-part-13" points=
+    "
+    232,515 237,520
+    242,530 242,535
+    237,540 232,545
+    486,545 481,540
+    476,535 476,530
+    481,520 486,515
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="bottle-part-14" points=
+    "
+    231,545.25 231,575
+    487,575 487,545.25 
+    "
+    style="fill:#fff;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="bottle-part-15" points=
+    "
+    232,575 237,580
+    242,590 242,595
+    237,600 232,605
+    486,605 481,600
+    476,595 476,590
+    481,580 486,575
+    "
+    style="fill:#002f86;stroke:#002f86;stroke-width:3" />
+
+  <polygon id="bottle-part-16" points=
+    "
+    231,605.25 231,675
+    238,696 239,697
+    240,698 241,699
+    242,700 243,701
+    244,702 245,703
+    246,704 247,705
+    248,706 249,707
+    250,708 251,709
+    252,710 253,711
+    254,712 255,713
+    256,714 257,715
+    258,716 259,717
+    260,718 261,719
+    457,719 458,718
+    459,717 460,716
+    461,715 462,714
+    463,713 464,712
+    465,711 466,710
+    467,709 468,708
+    469,707 470,706
+    471,705 472,704
+    473,703 474,702
+    475,701 476,700
+    477,699 478,698
+    479,697 480,696
+    487,675 487,605.25 
+    "
+    style="fill:#002f86;stroke:#002f86;stroke-width:3" />
+    <text x="248" y="667" font-family="Verdana" font-size="3.5rem" fill="white">20.45%</text>
+  </g>
+</svg>
+

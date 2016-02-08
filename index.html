@@ -10,8 +10,8 @@
     <meta name="description" content="Solar - Data Exploration - Could Los Angeles generate its energy from solar panels?">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="tachyons.css">
-    <script async src="app.js"></script>
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script src="app.js"></script>
+    <script src="/Chart.min.js"></script>
   </head>
   <body>
     <header>
@@ -22,9 +22,9 @@
     </header>
     <main class="cf ptl">
       <section class="mw8 center tc pbl prl pll">
-        <div class="darkest-blue f2 b">Los Angeles' Electricity Use as a Percent of California's</div>
+        <div class="darkest-blue f2 b pbm">Los Angeles' Electricity Use as a Percent of California's</div>
         <figure>
-          <img src="california-outline.svg"/>
+          <img class="max-h6" src="california-outline-and-flag.png"/>
         </figure>
       </section>
       <section class="mw8 center tc pbl">
@@ -33,6 +33,14 @@
           <canvas id="chart-area" class=""></canvas>
         </div>
       </section>
+      <section class="mw8 center tc pbl prl pll">
+        <div class="darkest-blue f2 b">L.A.'s Water Needs Saved By Solar Panels</div>
+        <figure>
+          <img src="water-bottle-2.svg"/>
+        </figure>
+      </section>
+
+
       <section class="pll prl ptm pbm w-33-ns tc fl-ns">
         <h1 class="mtn f2 ttu darkest-blue mbs">City Profile</h1>
         <section class="pts pbs" tabindex="1">

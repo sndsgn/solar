@@ -2113,6 +2113,14 @@ code {
   height: 16rem;
 }
 
+.h6 {
+  height: 20rem;
+}
+
+.max-h6 {
+  height: 20rem;
+}
+
 .h-10 {
   height: 10%;
 }

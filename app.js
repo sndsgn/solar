@@ -5,12 +5,12 @@
 
 //Function which formats numbers with thousand, milion, billion, etc. comma separators 
 //Reference: http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-function numCommaSep(num) {
+var numCommaSep = function (num) {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-}
+};
 
 //Function declaration that creates an XHR Request
-function createXHR(method, url) {
+var createXHR = function (method, url) {
   var xhr  = new XMLHttpRequest();
   xhr.open(method, url, true);
   xhr.send();
@@ -18,7 +18,7 @@ function createXHR(method, url) {
 };
 
 //Percent format function declaration
-function percentFormat(num) {
+var percentFormat = function (num) {
   return ((num * 100).toFixed(2)) + '%';
 };
 
@@ -29,7 +29,7 @@ var daysInYear = 365.24;
 //The last two parameters allow you to specify a start and stop index within the list.
 //If no start or stop are specified, the function will iterate over the entire list.
 //This is similar to forEach or _.each functions with an option to specify the start and stop index
-function forRange(list, func, start, stop) {
+var forRange = function (list, func, start, stop) {
   var i;
   var key;
   var keySet = Object.keys(list);
@@ -48,7 +48,7 @@ function forRange(list, func, start, stop) {
       func(list[keySet[key]]);
     }
   } 
-}
+};
 
 //Pie chart data array declaration and assigment
 var pieData = [];
@@ -84,7 +84,7 @@ ghi.addEventListener('load', function() {
 
     //Cleans source JSON object with LA kWh use data, declares and assigns new object with each zip having its kWh usage organized by year and adds a property 'average' of all years for that zip.
     var laDataArr = laKwhObj.data;
-    function laDataKwhExtractObj(arr) {
+    var laDataKwhExtractObj = function (arr) {
       var zipKwhObj = {};
       forRange(arr, function(item) {
         var subObj = JSON.parse(item[16][0]); 
@@ -109,7 +109,7 @@ ghi.addEventListener('load', function() {
     //Function declaration that returns an array with the cleaned object data sortedLaKwhArr in descending order by average kWh instead of by zip 
     //Referenced: http://stackoverflow.com/questions/1069666/sorting-javascript-object-by-property-value
 
-    function sortKwhAvg(obj) {
+    var sortKwhAvg = function (obj) {
       var sortedArr = [];
       var item;
       for(item in obj) {
@@ -122,7 +122,7 @@ ghi.addEventListener('load', function() {
     var sortedLaKwhArr = sortKwhAvg(laZipKwhObjClean);
 
     //Function declaration that populates pieData with the zip and  average zip kWh consumption
-    function pushDataPie(arr, chartArr) {
+    var pushDataPie = function (arr, chartArr) {
       var i = 35;
       forRange(arr, function(item) {
         var formattedKwh = ((item[1])/1000000000); 
@@ -202,8 +202,8 @@ ghi.addEventListener('load', function() {
     document.getElementById('cityKwhCostDaily').innerHTML = '$' + numCommaSep(laKwhCostDaily);
 
     //Function declaration that returns the depreciation of solar panels over the number years provided
-    //Data Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx
-    function solarDepreciationAvg(years) {
+    //Data Source: http://www.engineering.com/ElectronicsDesign/ElectronicsDesignArticles/ArticleID/7475/What-Is-the-Lifespan-of-a-Solar-Panel.aspx 
+    var solarDepreciationAvg = function (years) {
       var i;
       var accumulator = 0;
       for(i = 1; i <= years; i +=1) {
