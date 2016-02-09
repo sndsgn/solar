@@ -3,22 +3,6 @@
 //Could Los Angeles generate its energy needs from solar panels?
 //Extracting external data and calculating whether LA can run off of solar energy
 
-//Function declaration that creates an XHR Request
-var createXHR = function (method, url) {
-  var xhr  = new XMLHttpRequest();
-  xhr.open(method, url, true);
-  xhr.send();
-  return xhr; 
-};
-
-//Initiates XHR request for Los Angeles kWh usage data by zip code and year
-//Data source: https://data.lacity.org/api/views/rijp-9dwj/rows.json
-var laKwhAnnual = createXHR('GET', 'data/kwh-consumption/2015_2003lacityelectricitydata.json');
-//Initiates XHR Request for GHI Data for Los Angeles
-//Data: The values returned are kWh/m2/day (kilowatt hours per square meter per day). Annual Average Daily 
-//Data source: http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=KEY=Los+Angeles 
-var ghi = createXHR('GET', 'data/kwh-ghi/2009_1998avgGHILA.json');
-
 //Function which formats numbers with thousand, milion, billion, etc. comma separators 
 //Reference: http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 var numCommaSep = function (num) {
@@ -62,10 +46,28 @@ var forRange = function (list, func, start, stop) {
 //Pie chart data array declaration and assigment
 var pieData = [];
 
+//Function declaration that creates an XHR Request
+var createXHR = function (method, url) {
+  var xhr  = new XMLHttpRequest();
+  xhr.open(method, url, true);
+  xhr.send();
+  return xhr; 
+};
+
+//Initiates XHR request for Los Angeles kWh usage data by zip code and year
+//Data source: https://data.lacity.org/api/views/rijp-9dwj/rows.json
+var laKwhAnnual = createXHR('GET', 'data/kwh-consumption/2015_2003lacityelectricitydata.json');
+//Initiates XHR Request for GHI Data for Los Angeles
+//Data: The values returned are kWh/m2/day (kilowatt hours per square meter per day). Annual Average Daily 
+//Data source: http://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=KEY=Los+Angeles 
+var ghi = createXHR('GET', 'data/kwh-ghi/2009_1998avgGHILA.json');
+
 
 var onXhrComplete = function(xhr1, xhr2) {
+
 //Event listener for ghi XHR request load and then proceeds with XHR request for LA kWh use data
 //ghi.addEventListener('loadend', function(data) {
+
   //Create JSON formatted object from XHR request for LA's average GHI
   var ghiObj = JSON.parse(xhr1.responseText);
 
@@ -74,7 +76,6 @@ var onXhrComplete = function(xhr1, xhr2) {
     //Declaration of and assignment to variable of annual daily average of GHI kWh for Los Angeles to variable
     var ghiDailyAvg = ghiObj['outputs']['avg_ghi']['annual'];
     document.getElementById('ghIrradiance').innerHTML = ghiDailyAvg;
-
 
     //Los Angeles electricity use for 2003-2010 (monthly average for the year) in million kWh
     //Declaration and assignment of JSON object from LA kWh use XHR request
@@ -277,9 +278,9 @@ var onXhrComplete = function(xhr1, xhr2) {
 
     //Water savings percent based on daily consumption in 2014 of average daily resident in Los Angeles http://www.latimes.com/local/california/la-me-adv-water-use-compared-20150413-story.html 131 gallons per day per capita
     var waterSavingsPercent = (waterSavedTotal / (131* laCityPop * 365));
+
     pushDataPie(sortedLaKwhArr, pieData, charCreate);
   };
-//});
 
 //Check if both XHR requests are complete
 var checkXhrComplete = function(xhr1, xhr2, xhrCB) {
@@ -289,6 +290,5 @@ var checkXhrComplete = function(xhr1, xhr2, xhrCB) {
     setTimeout(function() {checkXhrComplete(xhr1, xhr2, xhrCB);}, 500);
   }
 };
-
 
 checkXhrComplete(ghi, laKwhAnnual, onXhrComplete);
