@@ -123,7 +123,7 @@ ghi.addEventListener('load', function() {
     var sortedLaKwhArr = sortKwhAvg(laZipKwhObjClean);
 
     //Function declaration that populates pieData with the zip and  average zip kWh consumption
-    var pushDataPie = function (arr, chartArr) {
+    var pushDataPie = function (arr, chartArr, cb) {
       var i = 35;
       forRange(arr, function(item) {
         var formattedKwh = ((item[1])/1000000000); 
@@ -135,8 +135,43 @@ ghi.addEventListener('load', function() {
           label: 'Zip / Postal Code - ' + item[0] + ' Annual Electricity Consumption (GWh)'  
         });
       });
+      cb(chartArr);
     };
-    pushDataPie(sortedLaKwhArr, pieData);
+
+    /*!
+     * Chart.js
+     * http://chartjs.org/
+     *
+     * Copyright 2013 Nick Downie
+     * Released under the MIT license
+     * https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
+     */
+
+    //Pie chart with all Los Angeles zip code kWh usage
+    //The below code generates the pie chart visualization using the Chart.js library
+
+    var charCreate =  function(pieDataArr) {
+      var ctx = document.getElementById('chart-area').getContext('2d');
+      window.myPie = new Chart(ctx).Pie(pieDataArr, {
+        responsive : true,
+        animationSteps: 90,
+        animateScale: true,
+        percentageInnerCutout : 0,
+        segmentShowStroke : true,
+        segmentStrokeColor : '#fff',
+        segmentStrokeWidth : 2,
+        animation : true,
+        animationEasing : 'easeOutBounce',
+        animateRotate : true,
+        animateScale : false,
+        labelFontFamily : 'Arial',
+        labelFontStyle : 'normal',
+        labelFontSize : 84,
+        labelFontColor : '#666' 
+      });
+    };
+
+    pushDataPie(sortedLaKwhArr, pieData, charCreate);
 
     //Solar Panels Needed based on Grape Solar Panel 390 watt
     //Grape Solar Panel (GSP) 390w 15.21% Efficiency http://solar-panels-review.toptenreviews.com/grape-solar-390w-review.html?cmpid=ttr-ls
@@ -240,37 +275,6 @@ ghi.addEventListener('load', function() {
 
     //Water savings percent based on daily consumption in 2014 of average daily resident in Los Angeles http://www.latimes.com/local/california/la-me-adv-water-use-compared-20150413-story.html 131 gallons per day per capita
     var waterSavingsPercent = (waterSavedTotal / (131* laCityPop * 365));
-
-    /*!
-     * Chart.js
-     * http://chartjs.org/
-     *
-     * Copyright 2013 Nick Downie
-     * Released under the MIT license
-     * https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
-     */
-
-    //Pie chart with all Los Angeles zip code kWh usage
-    //The below code generates the pie chart visualization using the Chart.js library
-
-    var ctx = document.getElementById('chart-area').getContext('2d');
-    window.myPie = new Chart(ctx).Pie(pieData, {
-      responsive : true,
-      animationSteps: 90,
-      animateScale: true,
-      percentageInnerCutout : 0,
-      segmentShowStroke : true,
-      segmentStrokeColor : '#fff',
-      segmentStrokeWidth : 2,
-      animation : true,
-      animationEasing : 'easeOutBounce',
-      animateRotate : true,
-      animateScale : false,
-      labelFontFamily : 'Arial',
-      labelFontStyle : 'normal',
-      labelFontSize : 84,
-      labelFontColor : '#666' 
-    });
   });
 });
 
