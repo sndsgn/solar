@@ -62,23 +62,23 @@ var forRange = function (list, func, start, stop) {
 //Pie chart data array declaration and assigment
 var pieData = [];
 
-//Event listener for ghi XHR request load and then proceeds with XHR request for LA kWh use data
-ghi.addEventListener('load', function() {
-  //Create JSON formatted object from XHR request for LA's average GHI
-  var ghiObj = JSON.parse(ghi.responseText);
-  console.log('ghi loaded', ghiObj, 'pieData', pieData);
 
-  laKwhAnnual.addEventListener('load', function() {
+var onXhrComplete = function(xhr1, xhr2) {
+//Event listener for ghi XHR request load and then proceeds with XHR request for LA kWh use data
+//ghi.addEventListener('loadend', function(data) {
+  //Create JSON formatted object from XHR request for LA's average GHI
+  var ghiObj = JSON.parse(xhr1.responseText);
+
+ // laKwhAnnual.addEventListener('loadend', function() {
 
     //Declaration of and assignment to variable of annual daily average of GHI kWh for Los Angeles to variable
     var ghiDailyAvg = ghiObj['outputs']['avg_ghi']['annual'];
     document.getElementById('ghIrradiance').innerHTML = ghiDailyAvg;
 
-    console.log('laKwhAnnual loaded', ghiDailyAvg, 'pieData', pieData);
 
     //Los Angeles electricity use for 2003-2010 (monthly average for the year) in million kWh
     //Declaration and assignment of JSON object from LA kWh use XHR request
-    var laKwhObj = JSON.parse(laKwhAnnual.responseText);
+    var laKwhObj = JSON.parse(xhr2.responseText);
 
     //Declaration of and assignment to variable with the yearly average kWh use value
     var laKwhYearlyAvg = Math.round((laKwhObj.meta.view.columns[15].cachedContents.sum * 1000000));
@@ -138,7 +138,6 @@ ghi.addEventListener('load', function() {
           label: 'Zip / Postal Code - ' + item[0] + ' Annual Electricity Consumption (GWh)'  
         });
       });
-      console.log('chartArr aka Pie Data', chartArr);
       cb(chartArr);
     };
 
@@ -278,9 +277,18 @@ ghi.addEventListener('load', function() {
 
     //Water savings percent based on daily consumption in 2014 of average daily resident in Los Angeles http://www.latimes.com/local/california/la-me-adv-water-use-compared-20150413-story.html 131 gallons per day per capita
     var waterSavingsPercent = (waterSavedTotal / (131* laCityPop * 365));
-    console.log('pieData before push', pieData);
     pushDataPie(sortedLaKwhArr, pieData, charCreate);
-    console.log('pieData after push', pieData);
-  });
-});
+  };
+//});
 
+//Check if both XHR requests are complete
+var checkXhrComplete = function(xhr1, xhr2, xhrCB) {
+  if(xhr1.responseText && xhr2.responseText) {
+    xhrCB(xhr1, xhr2);
+  } else {
+    setTimeout(function() {checkXhrComplete(xhr1, xhr2, xhrCB);}, 500);
+  }
+};
+
+
+checkXhrComplete(ghi, laKwhAnnual, onXhrComplete);
