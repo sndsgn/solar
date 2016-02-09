@@ -172,7 +172,6 @@ ghi.addEventListener('load', function() {
       });
     };
 
-    pushDataPie(sortedLaKwhArr, pieData, charCreate);
 
     //Solar Panels Needed based on Grape Solar Panel 390 watt
     //Grape Solar Panel (GSP) 390w 15.21% Efficiency http://solar-panels-review.toptenreviews.com/grape-solar-390w-review.html?cmpid=ttr-ls
@@ -276,6 +275,7 @@ ghi.addEventListener('load', function() {
 
     //Water savings percent based on daily consumption in 2014 of average daily resident in Los Angeles http://www.latimes.com/local/california/la-me-adv-water-use-compared-20150413-story.html 131 gallons per day per capita
     var waterSavingsPercent = (waterSavedTotal / (131* laCityPop * 365));
+    pushDataPie(sortedLaKwhArr, pieData, charCreate);
   });
 });
 
