@@ -135,6 +135,7 @@ ghi.addEventListener('load', function() {
           label: 'Zip / Postal Code - ' + item[0] + ' Annual Electricity Consumption (GWh)'  
         });
       });
+      console.log('chartArr aka Pie Data', chartArr);
       cb(chartArr);
     };
 
