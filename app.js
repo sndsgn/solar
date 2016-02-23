@@ -287,7 +287,7 @@ var checkXhrComplete = function(xhr1, xhr2, xhrCB) {
   if(xhr1.responseText && xhr2.responseText) {
     xhrCB(xhr1, xhr2);
   } else {
-    setTimeout(function() {checkXhrComplete(xhr1, xhr2, xhrCB);}, 250);
+    setTimeout(function() {checkXhrComplete(xhr1, xhr2, xhrCB);}, 100);
   }
 };
 
